@@ -34,6 +34,97 @@
 	.upper_row_content:hover{background:#f9f9f9;  box-shadow:3px 3px 4px #557;}
 	.upper_row_content h3{color: #3071A9;}
 	.upper_row_content h3, .upper_row_content p{padding:2px 14px;}
+		  .slideanim {visibility:hidden;}
+    .slides{
+      animation-name: slides;
+      -webkit-animation-name: slides;	
+      animation-duration: 2s;	
+      -webkit-animation-duration: 2s;
+      visibility: visible;			
+  }
+  
+    @keyframes slides {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }	
+  }
+  @-webkit-keyframes slides {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  
+  
+  	  .slideanimleft {visibility:hidden;}
+    .slideleft{
+      animation-name: slideleft;
+      -webkit-animation-name: slideleft;	
+      animation-duration: 1.5s;	
+      -webkit-animation-duration: 1.5s;
+      visibility: visible;			
+  }
+  
+    @keyframes slideleft {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }	
+  }
+  @-webkit-keyframes slideleft {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }
+  }
+  
+  
+  	  .slideanimright {visibility:hidden;}
+    .slideright{
+      animation-name: slideright;
+      -webkit-animation-name: slideright;	
+      animation-duration: 1.5s;	
+      -webkit-animation-duration: 1.5s;
+      visibility: visible;			
+  }
+  
+    @keyframes slideright {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }	
+  }
+  @-webkit-keyframes slideright {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }
+  }
 	</style>
 </head>
 <body>
@@ -128,7 +219,7 @@
 									
 									<!--Rest of the items-->
 									
-		<div class="row rest_contents">
+		<div class="row rest_contents slideanimleft">
 			<div class="col-sm-4 upper_row">
 				<div class="upper_row_content">
 					<img src="img/service.jpg" class="img-responsive">
@@ -142,14 +233,14 @@
 					</p>
 				</div>
 			</div>
-			<div class="col-sm-4 upper_row">
+			<div class="col-sm-4 upper_row  slideanim">
 				<div class="upper_row_content">
 					<img src="img/sustain.jpg" class="img-responsive">
 					<h3>Sustainability</h3>
 					<p>Our commitment to sustainability helps us reduce waste and share the benefits with our customers. It permeates the way we do business, driving us to innovate and be creative in everything from warehousing operations to transportation, from solution design to procurement policy.</p>
 				</div>
 			</div>
-			<div class="col-sm-4 upper_row">
+			<div class="col-sm-4 upper_row slideanimright">
 				<div class="upper_row_content">
 				<img src="img/people.jpg" class="img-responsive">
 					<h3>Our People</h3>
@@ -158,7 +249,7 @@
 			</div>
 		</div>
 		
-		<div class="row rest_contents">
+		<div class="row rest_contents slideanimleft">
 			<div class="col-sm-4 upper_row">
 				<div class="upper_row_content">
 				<img src="img/news.jpg" class="img-responsive">
@@ -166,7 +257,7 @@
 					<p>CEVA appoints Carlos Velez Rodriguez as Managing Director Australia & New Zealand Hoofddorp, the Netherlands 13 December, 2016 – CEVA Logistics, one of the world’s largest supply…</p>
 				</div>
 			</div>
-			<div class="col-sm-4 upper_row">
+			<div class="col-sm-4 upper_row  slideanim">
 				<div class="upper_row_content">
 					<img src="img/map.jpg" class="img-responsive">
 					<h3>Our Location</h3>
@@ -180,7 +271,7 @@
 						<li>Sylhet</li></ul></p>
 				</div>
 			</div>
-			<div class="col-sm-4 upper_row">
+			<div class="col-sm-4 upper_row slideanimright">
 				<div class="upper_row_content">
 					<img src="img/connect.jpg" class="img-responsive">
 					<h3>Stay in Touch</h3>
@@ -197,5 +288,51 @@ Follow us</p>
 		</br>&copy <b>SHIMOON LOGISTICS</b>
 		</br>Developed By <a href=""><b>RESOFT</b></a>
 		</footer>
+		
+		
+		
+		
+		
+		
+		<script>
+		$(document).ready(function(){
+		
+									  
+					  $(window).scroll(function() {
+					  $(".slideanim").each(function(){
+						var pos = $(this).offset().top;
+
+						var winTop = $(window).scrollTop();
+						if (pos < winTop + 570) {
+						  $(this).addClass("slides");
+						}
+					  });
+					});
+				  $(window).scroll(function() {
+				  $(".slideanimleft").each(function(){
+					var pos = $(this).offset().top;
+
+					var winTop = $(window).scrollTop();
+					if (pos < winTop + 570) {
+					  $(this).addClass("slideleft");
+					}
+				  });
+				});
+
+				  $(window).scroll(function() {
+				  $(".slideanimright").each(function(){
+					var pos = $(this).offset().top;
+
+					var winTop = $(window).scrollTop();
+					if (pos < winTop + 570) {
+					  $(this).addClass("slideright");
+					}
+				  });
+				});
+
+				})
+
+		</script>
+
 							
 </body>
