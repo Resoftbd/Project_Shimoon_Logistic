@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Theme Resoft</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="css/bootstrap.min.js"></script>
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<style>
+	body{margin:0px;padding:0px;width:100%; background:#eee; overflow-x:hidden;}
+	.slide{margin-top:121px; width:100%;}
+	.slider-image{height:69vh!important; width:100vw!important;}
+	h1{color margin:30px;}
+	.slider-div{padding:0px; margin-left:0px; margin-right:0px;width:100%;}
+	.glyphicon-circle-arrow-right,.glyphicon-circle-arrow-left{margin-top:35vh;}
+	.navbar{background:rgba(245,245,245,0.95);}
+	.navbar-nav{padding-left:28vw; width:100vw; margin-left:0px;   border-top:1px solid #eee; background: -webkit-linear-gradient(#fff, #eee); /* For Safari 5.1 to 6.0 */
+				  background: -o-linear-gradient(#fff, #eee); /* For Opera 11.1 to 12.0 */
+				  background: -moz-linear-gradient(#fff, #eee); /* For Firefox 3.6 to 15 */
+				  background: linear-gradient(#fff, #eee); /* Standard syntax */
+				  box-shadow:1px 1px 1px #000;}
+	.navbar-nav a{color:#223; padding-bottom:13px;}
+	.navbar-nav a:hover{color:#001; padding-bottom:10px; border-bottom:3px solid #1B6FB8;}
+	footer{padding:20px; text-align:center; border-top:2px solid #1B6FB8;}
+	footer a{color:#1B6FB8;}
+	.row{padding:1px 25px;}
+	.rest_contents{padding:30px 175px;}
+	.upper_row{padding:5px 30px;}
+	.upper_row_content{border-top:5px solid #fff; background:#f2f2f2;height:350px; box-shadow:1px 1px 2px #557; transition: background 0.3s, box-shadow 0.2s;}
+	.upper_row_content:hover{background:#f9f9f9;  box-shadow:3px 3px 4px #557;}
+	.upper_row_content h3{color: #3071A9;}
+	.upper_row_content h3, .upper_row_content p{padding:2px 15px;}
+	.slideanim {visibility:hidden;}
+	.brand-logo{height:25vh;width:100%;}
+    .slides{
+      animation-name: slides;
+      -webkit-animation-name: slides;	
+      animation-duration: 2s;	
+      -webkit-animation-duration: 2s;
+      visibility: visible;			
+  }
+  
+    @keyframes slides {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }	
+  }
+  @-webkit-keyframes slides {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  
+  
+  	  .slideanimleft {visibility:hidden;}
+    .slideleft{
+      animation-name: slideleft;
+      -webkit-animation-name: slideleft;	
+      animation-duration: 1.5s;	
+      -webkit-animation-duration: 1.5s;
+      visibility: visible;			
+  }
+  
+    @keyframes slideleft {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }	
+  }
+  @-webkit-keyframes slideleft {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }
+  }
+  
+  
+  	  .slideanimright {visibility:hidden;}
+    .slideright{
+      animation-name: slideright;
+      -webkit-animation-name: slideright;	
+      animation-duration: 1.5s;	
+      -webkit-animation-duration: 1.5s;
+      visibility: visible;			
+  }
+  
+    @keyframes slideright {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }	
+  }
+  @-webkit-keyframes slideright {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }
+  }
+	</style>
+</head>
+<body>
+
+
+										<!-- NAVBAR STARTS HERE-->
+
+
+	<nav class="navbar navbar-fixed-top">
+		<div class="nav_head">
+			<div class="row">
+				<div class="col-sm-9">
+					<img src="img/logo.png" height="70"><b style="color:#00BED5; font-size:17px;">Shimoon Logistic</b>
+				</div>
+				<div class="col-sm-3">
+					<div class="search">
+						<br>
+					  <div class="input-group">
+							<input type="text" class="form-control" placeholder="Search here" name="srch-term" id="srch-term">
+							<div class="input-group-btn">
+								<button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+							</div>
+						</div>
+					  </div>
+				</div>
+			</div>
+		</div>
+	  <div class="containers">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span> 
+		  </button>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+		  <ul class="nav navbar-nav">
+			<li><a href="#childhood"><b>Our Industry</b></a></li>
+			<li><a href="#rise"><b>Our Customers</b></a></li>
+			<li><a href="#career"><b>Gallery</b></a></li>
+			<li><a href="#records"><b>Supply Chain Solution</b></a></li>
+			<li><a href="#gallery"><b>Freights</b></a></li>
+		  </ul>
+		</div>
+	  </div>
+	</nav>
+	
+	
+										<!-- NAVBAR ENDS HERE-->
+										
+										
+										<!-- Slider starts here-->
+										
+
+		<div class="container-fluid slider-div">
+		  <div id="myCarousel" class="carousel slide jumborton" data-ride="carousel" data-interval="4500">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+			  <li data-target="#myCarousel" data-slide-to="0" class="active"> I </li>
+			  <li data-target="#myCarousel" data-slide-to="1"> II </li>
+			  <li data-target="#myCarousel" data-slide-to="2"> III </li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner jumborton" role="listbox">
+			  <div class="item active">
+				<img src="img/log1.jpg" alt="Mashrafee" width="1367px" height="400px" class="img-responsive slider-image">
+			  </div>
+
+			  <div class="item">
+				<img src="img/log2.jpg" alt="Mashrafee" width="1367px" height="400px" class="img-responsive slider-image">
+			  </div>
+			
+			  <div class="item">
+				<img src="img/log3.jpg" alt="Mashrafee" width="1367px" height="400px" class="img-responsive slider-image">
+			  </div>
+
+			</div>
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			  <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+			  <span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			  <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+			  <span class="sr-only">Next</span>
+			</a>
+		  </div>
+		</div>
+
+
+									<!--Slider ends here-->
+									
+									<!--Rest of the items-->
+									
+		<div class="row rest_contents" style="padding-left:172px;">
+			<h2 style="color:#3071A9">Our Valueable customers</h2>
+					<p>Our commitment to sustainability helps us reduce waste and share the benefits with our customers. It permeates the way we do business, driving us to innovate and be creative in everything from warehousing operations to transportation, from solution design to procurement policy. Our commitment to sustainability helps us reduce waste and share the benefits with our customers. It permeates the way we do business, driving us to innovate and be creative in everything from warehousing operations to transportation, from solution design to procurement policy.</p>
+		</div>						
+									
+		<div class="row rest_contents">
+			<div class="col-sm-4 upper_row slideanimleft">
+				<div class="upper_row_content">
+					<img src="img/www.png" class="img-responsive brand-logo">
+					<h3>Sara Lee</h3>
+					<p>Sara lee is one of our valueable customers. We offer a range of Specialized Services including.Delivering logistical services to the exhibition.</p>
+	
+				</div>
+			</div>
+			<div class="col-sm-4 upper_row  slideanim">
+				<div class="upper_row_content">
+					<img src="img/ww1.png" class="img-responsive brand-logo">
+					<h3>Grilled Chese</h3>
+					<p>Grilled Chese is one of our valueable customers. Our commitment to sustainability helps us reduce waste and share the benefits with our customers.</p>
+				</div>
+			</div>
+			<div class="col-sm-4 upper_row slideanimright">
+				<div class="upper_row_content">
+				<img src="img/ww2.jpg" class="img-responsive brand-logo">
+					<h3>Universal</h3>
+					<p>Universal is one of our valueable customers. People are our biggest assets and we aim to attract and develop the best to deliver outstanding performance.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row rest_contents">
+			<div class="col-sm-4 upper_row slideanimleft">
+				<div class="upper_row_content">
+				<img src="img/ww3.png" class="img-responsive brand-logo">
+					<h3>Gateway</h3>
+					<p>Gateway is one of our valueable customers and we are one of their world’s largest supply.</p>
+				</div>
+			</div>
+			<div class="col-sm-4 upper_row  slideanim">
+				<div class="upper_row_content">
+					<img src="img/ww4.png" class="img-responsive brand-logo">
+					<h3>PMK</h3>
+					<p>Shimun Logistic has a national network covering over 50 customers and PMK is the first customer of us.</p>
+				</div>
+			</div>
+			<div class="col-sm-4 upper_row slideanimright">
+				<div class="upper_row_content">
+					<img src="img/ww5.jpg" class="img-responsive brand-logo">
+					<h3>Secured State</h3>
+					<p>Secured State is one of our valueable customers. Make sure you follow us across social media to stay updated with the latest Shimun Logistic Logistics news.</p>
+				</div>
+			</div>
+		</div>
+		
+				<div class="row rest_contents">
+			<div class="col-sm-4 upper_row slideanimleft">
+				<div class="upper_row_content">
+					<img src="img/www.png" class="img-responsive brand-logo">
+					<h3>Sara Lee</h3>
+					<p>Sara lee is one of our valueable customers. We offer a range of Specialized Services including.Delivering logistical services to the exhibition.</p>
+	
+				</div>
+			</div>
+			<div class="col-sm-4 upper_row  slideanim">
+				<div class="upper_row_content">
+					<img src="img/ww1.png" class="img-responsive brand-logo">
+					<h3>Grilled Chese</h3>
+					<p>Grilled Chese is one of our valueable customers. Our commitment to sustainability helps us reduce waste and share the benefits with our customers.</p>
+				</div>
+			</div>
+			<div class="col-sm-4 upper_row slideanimright">
+				<div class="upper_row_content">
+				<img src="img/ww2.jpg" class="img-responsive brand-logo">
+					<h3>Universal</h3>
+					<p>Universal is one of our valueable customers. People are our biggest assets and we aim to attract and develop the best to deliver outstanding performance.</p>
+				</div>
+			</div>
+		</div>
+		
+				<div class="row rest_contents">
+			<div class="col-sm-4 upper_row slideanimleft">
+				<div class="upper_row_content">
+				<img src="img/ww3.png" class="img-responsive brand-logo">
+					<h3>Gateway</h3>
+					<p>Gateway is one of our valueable customers and we are one of their world’s largest supply.</p>
+				</div>
+			</div>
+			<div class="col-sm-4 upper_row  slideanim">
+				<div class="upper_row_content">
+					<img src="img/ww4.png" class="img-responsive brand-logo">
+					<h3>PMK</h3>
+					<p>Shimun Logistic has a national network covering over 50 customers and PMK is the first customer of us.</p>
+				</div>
+			</div>
+			<div class="col-sm-4 upper_row slideanimright">
+				<div class="upper_row_content">
+					<img src="img/ww5.jpg" class="img-responsive brand-logo">
+					<h3>Secured State</h3>
+					<p>Secured State is one of our valueable customers. Make sure you follow us across social media to stay updated with the latest Shimun Logistic Logistics news.</p>
+				</div>
+			</div>
+		</div>
+		
+		<footer>
+			<a href=""><b>Desclaimer</b></a> | <a href=""><b>Policy</b></a> | <a href=""><b>About Us</b></a> | <a href=""><b>Career</b></a> | <a href=""><b>Contact us</b></a>
+		</br></br>Shimoon Logistic , Choumuhuni, Chittagong, Bangladesh
+		</br>&copy <b>SHIMOON LOGISTICS</b>
+		</br>Developed By <a href=""><b>RESOFT</b></a>
+		</footer>
+		
+		
+		
+		
+		
+		
+		<script>
+		$(document).ready(function(){
+		
+									  
+					  $(window).scroll(function() {
+					  $(".slideanim").each(function(){
+						var pos = $(this).offset().top;
+
+						var winTop = $(window).scrollTop();
+						if (pos < winTop + 570) {
+						  $(this).addClass("slides");
+						}
+					  });
+					});
+				  $(window).scroll(function() {
+				  $(".slideanimleft").each(function(){
+					var pos = $(this).offset().top;
+
+					var winTop = $(window).scrollTop();
+					if (pos < winTop + 570) {
+					  $(this).addClass("slideleft");
+					}
+				  });
+				});
+
+				  $(window).scroll(function() {
+				  $(".slideanimright").each(function(){
+					var pos = $(this).offset().top;
+
+					var winTop = $(window).scrollTop();
+					if (pos < winTop + 570) {
+					  $(this).addClass("slideright");
+					}
+				  });
+				});
+
+				})
+
+		</script>
+
+							
+</body>
