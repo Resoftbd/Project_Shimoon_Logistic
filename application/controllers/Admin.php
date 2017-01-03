@@ -16,7 +16,7 @@ class Admin extends CI_Controller {
     //  ##Load pages
 	public function index()
 	{
-		$this->dashboard();
+		$this->inbox();
 	}
 
 	public function dashboard()
