@@ -889,6 +889,9 @@ class Admin extends CI_Controller {
             $data['msg'] = '';
 			$data['settings'] = $this->Mdl_admin->load_settings();
 			$data['profile'] = $this->Mdl_admin->load_profile();
+			$num_rows = $this->db->count_all("inbox");
+			$data['inbox_total'] = $num_rows;
+			$data['inbox_count'] = $this->Mdl_admin->inbox_count();
     		$this->load->view('vw_admin',$data);
     	}
 
@@ -981,7 +984,7 @@ class Admin extends CI_Controller {
         $username = $this->input->post('admin_username');
     	$password = $this->input->post('admin_password');
     	$passconf = $this->input->post('admin_passconf');
-    	$designation = $this->input->post('admin_designation');
+
 
         $this->form_validation->set_rules('admin_username', 'Username', 'trim|required|min_length[5]|max_length[12]|is_unique[admin.admin_username]');
 		$this->form_validation->set_rules('admin_password', 'Password', 'trim|required|min_length[8]');
@@ -1009,7 +1012,7 @@ class Admin extends CI_Controller {
             $name = $_FILES['admin_photo']['name'];
 			$data['vw_add_admin'] = 'vw_add_admin';
             $data['settings'] = $this->Mdl_admin->load_settings();
-    		$data['profile'] = $this->Mdl_admin->profile_add($admin_name,$username,$enc_password,$email,$designation,$target_file,$name);
+    		$data['profile'] = $this->Mdl_admin->profile_add($admin_name,$username,$enc_password,$email,$target_file,$name);
             $data['all_profile'] = $this->Mdl_admin->all_profile();
 
     	if($data['profile'] ==0)

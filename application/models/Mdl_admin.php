@@ -434,14 +434,13 @@ class Mdl_admin extends CI_Model {
 			return $query->result();
 		}
 	}
-	public function profile_add($admin_name,$admin_username,$enc_password,$admin_email,$admin_designation,$target_file)
+	public function profile_add($admin_name,$admin_username,$enc_password,$admin_email,$target_file)
 	{
 		$attr  = array(	
 			'admin_name' => $admin_name,
 			'admin_password' => $enc_password,	
 			'admin_username' => $admin_username,
 			'admin_email' => $admin_email,
-			'admin_designation' => $admin_designation,
 			'admin_photo' => $target_file,
 				
 			);

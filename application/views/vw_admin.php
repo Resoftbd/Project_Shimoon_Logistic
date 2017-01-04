@@ -17,20 +17,13 @@
   <link rel="icon" href="<?php echo base_url(); ?><?php echo $value1->settings_icon;?>">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" type="text/css">
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/css/bootstrap.min.js"></script>
 	<link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
 	<link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-
-
 	<link href="https://fonts.googleapis.com/css?family=Roboto:700,500" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/style.css">
 </head>
@@ -53,23 +46,15 @@
 								<span class="caret"></span></a>
 								<ul class="dropdown-menu sub">
 								  <a href="<?php echo base_url()?>Admin/edit_profile"><li><i class="fa fa-user" aria-hidden="true"></i>Edit Profile</li></a>
-								  <?php
-								  	if($value2->admin_designation=='Admin')
-								  	{
-								  ?>
+
 								  <a href="<?php echo base_url()?>Admin/add_admin"><li><i class="fa fa-user-plus" aria-hidden="true"></i>Add or remove</li></a>
-								  <?php
-								    } 
-								  ?>
+
 								  <a href="<?php echo base_url()?>Admin_logout"><li><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</li></a>
 								</ul>
 							  </li></div>
 							  
 							   <!-- Settings -->
-					<?php
-						if($value2->admin_designation=='Admin')
-						{
-					?>
+
 							  <div class="col-xs-1">
 								<li class="dropdown pull-right">
 								<a class="dropdown-toggle pro" data-toggle="dropdown" href="#"><i class="fa fa-gear" aria-hidden="true"></i> </a>
@@ -83,27 +68,28 @@
 								  
 								  <li><h3>Set site title</h3>
 									<input class="form-control" id="site-title" name="settings_title" value="'.$value1->settings_title.'"  placeholder="site-title"  type="text"></li>
-									 <li><h3>Set site copyright</h3>
-									<input class="form-control" id="site-title" name="settings_copyright" value="'.$value1->settings_copyright.'"  placeholder="site-copyright"  type="text"></li>
-									
+
 									<li><h3>Set title-bar logo</h3>
 									<input name="settings_icon" placeholder="Add a photo" type="file"></li>
 									
 									<li><h3>Set site logo</h3>
 									<input name="settings_logo" placeholder="Add a photo" type="file"></li>
-									
+									<li><h3>Set Facebook</h3>
+									<input class="form-control" name="settings_facebook" value="'.$value1->settings_facebook.'" placeholder="Facebook" type="text" style="margin-top:5px;">
+
 									<li><h3>Set address</h3>
 									<input class="form-control" name="settings_address" value="'.$value1->settings_address.'" placeholder="Address" type="text">
 									<input class="form-control" name="settings_phone" value="'.$value1->settings_phone.'" placeholder="Mobile number" type="text" style="margin-top:5px;">
 									<input class="form-control" name="settings_email" value="'.$value1->settings_email.'" placeholder="Email address" type="text" style="margin-top:5px;">
-								
+								    <input class="form-control" name="settings_facebook" value="'.$value1->settings_facebook.'" placeholder="Facebook" type="text" style="margin-top:5px;">
+
 									<li><button class="btn btn-primary" type="submit" style="width:100%; margin-top:15px;">Done</button></li>
 								
 								</ul>
 							    </li>
 								</div>';
 						
-						}
+
 						echo form_close();
 					    } 
 					 ?>

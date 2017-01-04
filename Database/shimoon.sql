@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2017 at 05:01 PM
+-- Generation Time: Jan 04, 2017 at 05:45 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_username`, `admin_name`, `admin_email`, `admin_password`, `admin_photo`) VALUES
-(1, 'admin', 'aoyan', 'fsdf', '827ccb0eea8a706c4c34a16891f84e7b', 'gdfg');
+(1, 'admin', 'aoyan', 'fsdffgfd@fgdf.dtgdt', '25d55ad283aa400af464c76d713c07ad', 'assets/upload/photo/9038586d306197f2b.jpg');
 
 -- --------------------------------------------------------
 
@@ -67,13 +67,20 @@ CREATE TABLE `settings` (
   `settings_id` int(11) NOT NULL,
   `settings_copyright` text NOT NULL,
   `settings_logo` text NOT NULL,
-  `settings_icon` int(11) NOT NULL,
+  `settings_icon` text NOT NULL,
   `settings_title` text NOT NULL,
   `settings_phone` text NOT NULL,
   `settings_address` text NOT NULL,
   `settings_email` text NOT NULL,
   `settings_facebook` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`settings_id`, `settings_copyright`, `settings_logo`, `settings_icon`, `settings_title`, `settings_phone`, `settings_address`, `settings_email`, `settings_facebook`) VALUES
+(1, '', 'assets/upload/photo/26926586d2987a1139.JPG', 'assets/upload/photo/31951586d2987a12d8.JPG', 'Shimoon Logistics', 'sagsg', 'sdgsrg', 'srrgsrg', 'srgwsg');
 
 --
 -- Indexes for dumped tables
@@ -105,7 +112,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `inbox`
 --
