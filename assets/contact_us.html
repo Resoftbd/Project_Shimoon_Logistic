@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Theme Resoft</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="css/bootstrap.min.js"></script>
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<style>
+	body{margin:0px;padding:0px;width:100%; background:#eee; overflow-x:hidden; font-family: 'Open Sans', sans-serif;}
+	.slide{margin-top:121px; width:100%;}
+	.slider-image{height:69vh!important; width:100vw!important;}
+	h1{color margin:30px;}
+	.slider-div{padding:0px; margin-left:0px; margin-right:0px;width:100%;}
+	.glyphicon-circle-arrow-right,.glyphicon-circle-arrow-left{margin-top:35vh;}
+	.navbar{background:rgba(245,245,245,0.95);}
+	.navbar-nav{padding-left:28vw; width:100vw; margin-left:0px;   border-top:1px solid #eee; background: -webkit-linear-gradient(#fff, #eee); /* For Safari 5.1 to 6.0 */
+				  background: -o-linear-gradient(#fff, #eee); /* For Opera 11.1 to 12.0 */
+				  background: -moz-linear-gradient(#fff, #eee); /* For Firefox 3.6 to 15 */
+				  background: linear-gradient(#fff, #eee); /* Standard syntax */
+				  box-shadow:1px 1px 1px #000;}
+	.navbar-nav a{color:#223; padding-bottom:13px;}
+	.navbar-nav a:hover{color:#001; padding-bottom:10px; border-bottom:3px solid #1B6FB8;}
+	.demo-image{width:98vw; height:35vh; padding:1vh; transition: width 0.4s, padding 0.4s;}
+	.demo-image:hover{width:100vw; height:35vh;  padding:0.2vh;}
+	footer{padding:20px; text-align:center; border-top:2px solid #1B6FB8; }
+	footer a{color:#1B6FB8;}
+	.row{padding:1px 25px;}
+	.rest_contents{padding:30px 175px;}
+	.upper_row{padding:5px 25px; }
+	.upper_row_content{border-top:5px solid #1B6FB8; background:#f2f2f2;height:400px; box-shadow:1px 1px 2px #557; transition: background 0.3s, box-shadow 0.2s;}
+	.upper_row_content:hover{background:#f9f9f9;  box-shadow:3px 3px 4px #557;}
+	.upper_row_content h3{color: #3071A9;}
+	.upper_row_content h3, .upper_row_content p{padding:2px 14px;}
+		  .slideanim {visibility:hidden;}
+    .slides{
+      animation-name: slides;
+      -webkit-animation-name: slides;	
+      animation-duration: 2s;	
+      -webkit-animation-duration: 2s;
+      visibility: visible;			
+  }
+  
+    @keyframes slides {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }	
+  }
+  @-webkit-keyframes slides {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  
+  
+  	  .slideanimleft {visibility:hidden;}
+    .slideleft{
+      animation-name: slideleft;
+      -webkit-animation-name: slideleft;	
+      animation-duration: 1.5s;	
+      -webkit-animation-duration: 1.5s;
+      visibility: visible;			
+  }
+  
+    @keyframes slideleft {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }	
+  }
+  @-webkit-keyframes slideleft {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }
+  }
+  
+  
+  	  .slideanimright {visibility:hidden;}
+    .slideright{
+      animation-name: slideright;
+      -webkit-animation-name: slideright;	
+      animation-duration: 1.5s;	
+      -webkit-animation-duration: 1.5s;
+      visibility: visible;			
+  }
+  
+    @keyframes slideright {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }	
+  }
+  @-webkit-keyframes slideright {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }
+  }
+	</style>
+</head>
+<body>
+
+
+										<!-- NAVBAR STARTS HERE-->
+
+
+	<nav class="navbar navbar-fixed-top">
+		<div class="nav_head">
+			<div class="row">
+				<div class="col-sm-9">
+					<img src="img/logo.png" height="70"><b style="color:#00BED5; font-size:17px;">Shimoon Logistic</b>
+				</div>
+				<div class="col-sm-3">
+					<div class="search">
+						<br>
+					  <div class="input-group">
+							<input type="text" class="form-control" placeholder="Search here" name="srch-term" id="srch-term">
+							<div class="input-group-btn">
+								<button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+							</div>
+						</div>
+					  </div>
+				</div>
+			</div>
+		</div>
+	  <div class="containers">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span> 
+		  </button>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+		  <ul class="nav navbar-nav">
+			<li><a href="#childhood"><b>Our Industry</b></a></li>
+			<li><a href="#rise"><b>Our Customers</b></a></li>
+			<li><a href="#career"><b>Gallery</b></a></li>
+			<li><a href="#records"><b>Supply Chain Solution</b></a></li>
+			<li><a href="#gallery"><b>Freights</b></a></li>
+		  </ul>
+		</div>
+	  </div>
+	</nav>
+	
+	
+										<!-- NAVBAR ENDS HERE-->
+										
+										
+										<!-- Slider starts here-->
+										
+
+		<div class="container-fluid slider-div">
+		  <div id="myCarousel" class="carousel slide jumborton" data-ride="carousel" data-interval="4500">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+			  <li data-target="#myCarousel" data-slide-to="0" class="active"> I </li>
+			  <li data-target="#myCarousel" data-slide-to="1"> II </li>
+			  <li data-target="#myCarousel" data-slide-to="2"> III </li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner jumborton" role="listbox">
+			  <div class="item active">
+				<img src="img/log1.jpg" alt="Mashrafee" width="1367px" height="400px" class="img-responsive slider-image">
+			  </div>
+
+			  <div class="item">
+				<img src="img/log2.jpg" alt="Mashrafee" width="1367px" height="400px" class="img-responsive slider-image">
+			  </div>
+			
+			  <div class="item">
+				<img src="img/log3.jpg" alt="Mashrafee" width="1367px" height="400px" class="img-responsive slider-image">
+			  </div>
+
+			</div>
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			  <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+			  <span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			  <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+			  <span class="sr-only">Next</span>
+			</a>
+		  </div>
+		</div>
+
+
+									<!--Slider ends here-->
+									
+									<!--Rest of the items-->
+									
+		<div class="row rest_contents" style="padding-left:180px;">
+		<div>
+			<h2 style="color:#3071A9">Contact Us</h2><br>
+					<p>Our commitment to sustainability helps us reduce waste and share the benefits with our customers. It permeates the way we do business, driving us to innovate and be creative in everything from warehousing operations to transportation, from solution design to procurement policy. Our commitment to sustainability helps us reduce waste and share the benefits with our customers. It permeates the way we do business, driving us to innovate and be creative in everything from warehousing operations to transportation, from solution design to procurement policy.</p>
+		
+		</div>
+
+		</div>
+		 <!-- Main content-->
+				<div class="rest_contents">
+				<div class="cat">
+			  <div class="row">
+			  <div class="col-sm-11">
+			  <div class="row">
+				<div class="col-sm-4 form-group">
+				  <h4>Name:</h4>
+				</div>
+				<div class="col-sm-8 form-group">
+				  <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+				</div>
+			  </div> 
+			  
+			  <div class="row">
+				<div class="col-sm-4 form-group">
+				  <h4>Email:</h4>
+				</div>
+				<div class="col-sm-8 form-group">
+				  <input class="form-control" id="password" name="password" placeholder="Email" type="email" required>
+				</div>
+			  </div> 
+			  
+			 <div class="row">
+				<div class="col-sm-4 form-group">
+				  <h4>Tell Us Something:</h4>
+				</div>
+				<div class="col-sm-8 form-group">
+				  <input class="form-control" id="dsgntn" name="dsgntn" placeholder="Tell Us Something" type="text">
+				</div>
+			  </div> 
+			  <div class="row">
+			 <div class="col-sm-3 form-group">
+				  <button class="btn btn-primary" type="submit" style="width:100%; margin-top:15px;">Find us in facebook</button>
+				</div>
+				<div class="col-sm-3 form-group pull-right">
+				  <button class="btn btn-info" type="submit" style="width:100%; margin-top:15px;">Submit Your Opinion</button>
+				</div>
+			  </div>
+			  </div>
+			  
+			  </div>
+			  
+				
+				</div>
+		</div>
+									
+
+		
+		
+		<footer>
+			<a href=""><b>Desclaimer</b></a> | <a href=""><b>Policy</b></a> | <a href=""><b>About Us</b></a> | <a href=""><b>Career</b></a> | <a href=""><b>Contact us</b></a>
+		</br></br>Shimoon Logistic , Choumuhuni, Chittagong, Bangladesh
+		</br>&copy <b>SHIMOON LOGISTICS</b>
+		</br>Developed By <a href=""><b>RESOFT</b></a>
+		</footer>
+		
+		
+		
+		
+		
+		
+		<script>
+		$(document).ready(function(){
+		
+									  
+					  $(window).scroll(function() {
+					  $(".slideanim").each(function(){
+						var pos = $(this).offset().top;
+
+						var winTop = $(window).scrollTop();
+						if (pos < winTop + 570) {
+						  $(this).addClass("slides");
+						}
+					  });
+					});
+				  $(window).scroll(function() {
+				  $(".slideanimleft").each(function(){
+					var pos = $(this).offset().top;
+
+					var winTop = $(window).scrollTop();
+					if (pos < winTop + 570) {
+					  $(this).addClass("slideleft");
+					}
+				  });
+				});
+
+				  $(window).scroll(function() {
+				  $(".slideanimright").each(function(){
+					var pos = $(this).offset().top;
+
+					var winTop = $(window).scrollTop();
+					if (pos < winTop + 570) {
+					  $(this).addClass("slideright");
+					}
+				  });
+				});
+
+				})
+
+		</script>
+
+							
+</body>
