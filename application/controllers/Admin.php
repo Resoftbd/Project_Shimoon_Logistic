@@ -156,39 +156,43 @@ class Admin extends CI_Controller {
 				}
 			}
 		}
-	//Page details		
- public function details()
+	//Page about
+ public function about()
 	{
 		$this->load->model('Mdl_update');
-		$data['vw_details'] = 'vw_details';
+		$data['vw_about'] = 'vw_about';
 		$data['msg'] = '';
 		$num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
-		$data['details'] = $this->Mdl_admin->load_details();
+		$data['about'] = $this->Mdl_admin->load_about();
 	
 		$this->load->view('vw_admin',$data);
 	}
-	public function update_details()
+	public function update_about()
 	{
 		$this->load->model('Mdl_update');
-        $target_file = $this->details_photo_update();
-        $name = $_FILES['details_photo']['name'];
+        $target_file_1 = $this->about_photo_1_update();
+		$target_file_2 = $this->about_photo_2_update();
+		$target_file_3 = $this->about_photo_3_update();
+        $name_1 = $_FILES['about_photo_1']['name'];
+		$name_2 = $_FILES['about_photo_2']['name'];
+		$name_3 = $_FILES['about_photo_3']['name'];
 
-        $data['vw_details'] = 'vw_details';
+        $data['vw_about'] = 'vw_about';
         $num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
-        $data['details'] = $this->Mdl_update->details_updated($target_file,$name);
+        $data['about'] = $this->Mdl_update->about_updated($target_file_1,$target_file_2,$target_file_3,$name_1,$name_2,$name_3);
     	$data['profile'] = $this->Mdl_admin->load_profile();
     	$data['settings'] = $this->Mdl_admin->load_settings();
 
-    	if($data['details'] ==0)
+    	if($data['about'] ==0)
 		{
 			
-			$data['details'] = $this->Mdl_admin->load_details();
+			$data['about'] = $this->Mdl_admin->load_about();
 			$data['settings'] = $this->Mdl_admin->load_settings();
 			$data['profile'] = $this->Mdl_admin->load_profile();
 			$data['msg'] = 'Sorry!! There is a problem in Update!!';
@@ -209,24 +213,24 @@ class Admin extends CI_Controller {
 		
 		$this->load->view('vw_admin',$data);   	
 	}
-		private function details_photo_update()
+		private function about_photo_1_update()
 		{
-			if($_FILES['details_photo']['name']!='')
+			if($_FILES['about_photo_1']['name']!='')
 			{
-				$name = $_FILES['details_photo']['name'];
+				$name = $_FILES['about_photo_1']['name'];
 				$name_ext = explode('.',$name );
 				$ext = end($name_ext);
 				$target_name = uniqid(rand()).".".$ext;
 				$target_file = "assets/upload/photo/".$target_name;
 				$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
-				$file_type = $_FILES['details_photo']['type'];
+				$file_type = $_FILES['about_photo_1']['type'];
 
 				if(in_array($ext, $allowed_types))
 				{
-					if(is_uploaded_file($_FILES['details_photo']['tmp_name']))
+					if(is_uploaded_file($_FILES['about_photo_1']['tmp_name']))
 						
 						{
-							if(move_uploaded_file($_FILES['details_photo']['tmp_name'], $target_file))
+							if(move_uploaded_file($_FILES['about_photo_1']['tmp_name'], $target_file))
 							{
 								
 								return $target_file;
@@ -241,6 +245,70 @@ class Admin extends CI_Controller {
 				}
 			}
 		}
+	private function about_photo_2_update()
+	{
+		if($_FILES['about_photo_2']['name']!='')
+		{
+			$name = $_FILES['about_photo_2']['name'];
+			$name_ext = explode('.',$name );
+			$ext = end($name_ext);
+			$target_name = uniqid(rand()).".".$ext;
+			$target_file = "assets/upload/photo/".$target_name;
+			$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
+			$file_type = $_FILES['about_photo_2']['type'];
+
+			if(in_array($ext, $allowed_types))
+			{
+				if(is_uploaded_file($_FILES['about_photo_2']['tmp_name']))
+
+				{
+					if(move_uploaded_file($_FILES['about_photo_2']['tmp_name'], $target_file))
+					{
+
+						return $target_file;
+					}
+
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	private function about_photo_3_update()
+	{
+		if($_FILES['about_photo_3']['name']!='')
+		{
+			$name = $_FILES['about_photo_3']['name'];
+			$name_ext = explode('.',$name );
+			$ext = end($name_ext);
+			$target_name = uniqid(rand()).".".$ext;
+			$target_file = "assets/upload/photo/".$target_name;
+			$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
+			$file_type = $_FILES['about_photo_3']['type'];
+
+			if(in_array($ext, $allowed_types))
+			{
+				if(is_uploaded_file($_FILES['about_photo_3']['tmp_name']))
+
+				{
+					if(move_uploaded_file($_FILES['about_photo_3']['tmp_name'], $target_file))
+					{
+
+						return $target_file;
+					}
+
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
 		// Portfolio
 	
 	 public function portfolio()
@@ -1094,33 +1162,101 @@ private function do_upload_2()
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
 		$this->load->view('vw_admin',$data);
-	} 
-	
+	}
 
-	public function adsense_code()
-    {
-    	$this->load->model('Mdl_update');
-    	$data['vw_adsense'] = 'vw_adsense';
-    	$num_rows = $this->db->count_all("inbox");
+
+	// ## Slideshow
+	public function slideshow()
+	{
+		$data['vw_slideshow'] = 'vw_slideshow';
+		$data['msg'] = '';
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+		$data['slideshow'] = $this->Mdl_admin->load_slide();
+		$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$this->load->view('vw_admin',$data);
+	}
+	public function add_slideshow()
+	{
+		$target_file = $this->slide_photo();
+		$data['vw_slideshow'] = 'vw_slideshow';
+		$num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
-		
-		$result = $this->Mdl_update->update_code();
+
+		$result = $this->Mdl_admin->slide_insert($target_file);
 		if($result==1)
 		{
-			$data['msg'] = 'Successfully Updated  your AdSense Code!!';
+			$data['msg'] = 'Successfully added the Slide!!';
 			$data['msg_type'] = 'success';
 		}
 		else
 		{
-			$data['msg'] = 'Sorry!!Code wast not added!!Try Again';
+			$data['msg'] = 'Sorry!! Slide was not added!!Try Again';
 			$data['msg_type'] = 'danger';
 		}
-		$data['adsense'] = $this->Mdl_admin->load_code();
+		$data['slideshow'] = $this->Mdl_admin->load_slide();
+
+
 		$this->load->view('vw_admin',$data);
-    }	
+	}
+	public function slide_delete($id)
+	{
+
+		$data['msg'] = '';
+		$data['vw_slideshow'] = 'vw_slideshow';
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+
+		$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$query = $this->Mdl_admin->delete_slide($id);
+		if($query==1)
+		{
+			$data['msg'] = 'Successfully Deleted the Slide!!';
+			$data['msg_type'] = 'success';
+		}
+		else{
+			$data['msg'] = 'Sorry!! Slide wast not deleted!!Try Again';
+			$data['msg_type'] = 'danger';
+		}
+		$data['slideshow'] = $this->Mdl_admin->load_slide();
+		$this->load->view('vw_admin',$data);
+	}
+	private function slide_photo()
+	{
+		$name = $_FILES['slideshow_photo']['name'];
+		$name_ext = explode('.',$name );
+		$ext = end($name_ext);
+		$target_name = uniqid(rand()).".".$ext;
+		$target_file = "assets/upload/slide/".$target_name;
+		$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
+		$file_type = $_FILES['slideshow_photo']['type'];
+
+		if(in_array($ext, $allowed_types))
+		{
+			if(is_uploaded_file($_FILES['slideshow_photo']['tmp_name']))
+
+			{
+				if(move_uploaded_file($_FILES['slideshow_photo']['tmp_name'], $target_file))
+				{
+
+					return $target_file;
+				}
+
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
     
 
 }

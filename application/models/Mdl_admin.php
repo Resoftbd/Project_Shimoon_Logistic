@@ -312,10 +312,10 @@ class Mdl_admin extends CI_Model {
 			return 'x';
 		}
 	}
-	public function load_details()
+	public function load_about()
 	{
-		$this->db->order_by('details_id','DESC');
-		$query =$this->db->get('details');
+		$this->db->order_by('about_id','DESC');
+		$query =$this->db->get('about');
 		if($query)
 		{
 			return $query->result();

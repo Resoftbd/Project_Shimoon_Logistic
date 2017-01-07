@@ -162,50 +162,84 @@ class Mdl_update extends CI_Model {
 			}
 		}
 		// ## Details update
-		public function details_updated($target_file,$name)
+		public function about_updated($target_file_1,$target_file_2,$target_file_3,$name_1,$name_2,$name_3)
 		{
-		$id = $this->input->post('details_id');
-	    $details_about_1 = $this->input->post('details_about_1');
-        $details_about_2 = $this->input->post('details_about_2');
-        $details_aim_1 = $this->input->post('details_aim_1');
-        $details_aim_2 = $this->input->post('details_aim_2');
+		$id = $this->input->post('about_id');
+	    $about_details = $this->input->post('about_details');
+
     	
 
 			$attr  = array(	
-			'details_about_1' => $details_about_1,
-			'details_about_2' => $details_about_2,
-			'details_aim_1' => $details_aim_1,
-			'details_aim_2' => $details_aim_2,		
-		
-				
+			'about_details' => $about_details,
+
 			);
 
-		$this->db->where('details_id',$id);
-		$query = $this->db->update('details',$attr);
+		$this->db->where('about_id',$id);
+		$query = $this->db->update('about',$attr);
 
-		$details_photo = $target_file;
-	    if($name!='')
+		    $about_photo_1 = $target_file_1;
+			$about_photo_2 = $target_file_2;
+			$about_photo_3 = $target_file_3;
+	    if($name_1!='')
         {
-			$query = $this->db->get_where('details',array('details_id'=>$id));
+			$query = $this->db->get_where('about',array('about_id'=>$id));
 			$photo_url = $query->result();
 			foreach ($photo_url as $value) 
 			{
-				if(file_exists($value->details_photo))
+				if(file_exists($value->about_photo_1))
 				{
-					unlink($value->details_photo);
+					unlink($value->about_photo_1);
 				}
 			}
 			$attr2  = array(	
 			
-			'details_photo' => $details_photo,
+			'about_photo_1' => $about_photo_1,
 				
 			);
-			$this->db->where('details_id',$id);
-			$query = $this->db->update('details',$attr2);
+			$this->db->where('about_id',$id);
+			$query = $this->db->update('about',$attr2);
 		}
+			if($name_2!='')
+			{
+				$query = $this->db->get_where('about',array('about_id'=>$id));
+				$photo_url = $query->result();
+				foreach ($photo_url as $value)
+				{
+					if(file_exists($value->about_photo_2))
+					{
+						unlink($value->about_photo_2);
+					}
+				}
+				$attr2  = array(
+
+					'about_photo_2' => $about_photo_2,
+
+				);
+				$this->db->where('about_id',$id);
+				$query = $this->db->update('about',$attr2);
+			}
+			if($name_3!='')
+			{
+				$query = $this->db->get_where('about',array('about_id'=>$id));
+				$photo_url = $query->result();
+				foreach ($photo_url as $value)
+				{
+					if(file_exists($value->about_photo_3))
+					{
+						unlink($value->about_photo_3);
+					}
+				}
+				$attr2  = array(
+
+					'about_photo_3' => $about_photo_3,
+
+				);
+				$this->db->where('about_id',$id);
+				$query = $this->db->update('about',$attr2);
+			}
 		if($query)
 		{
-			$query2 = $this->db->get('details');
+			$query2 = $this->db->get('about');
 			return $query2->result();
 		}
 		else
