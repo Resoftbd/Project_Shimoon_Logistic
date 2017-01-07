@@ -67,7 +67,7 @@
 				  <h4>About</h4>
 				</div>
 				<div class="col-sm-9 form-group">
-				  <textarea  class="form-control" id="name" name="about_details" placeholder="content" type="text"  rows="6"><?php echo $value->about_details;?> </textarea><br>
+				  <textarea  class="editable" id="name" name="about_details" placeholder="content" type="text"  rows="6"><?php echo $value->about_details;?> </textarea><br>
 				</div>
 			  </div> 
 
@@ -94,6 +94,45 @@
 			  </div>
 
 			 </div>
+					<script type="text/javascript">
+						tinymce.init({
+							selector: ".editable",
+							theme: "modern",
+							plugins: [
+								"advlist autolink lists link image charmap print preview hr anchor pagebreak",
+								"searchreplace wordcount visualblocks visualchars code fullscreen",
+								"insertdatetime media nonbreaking save table contextmenu directionality",
+								"emoticons template paste textcolor colorpicker textpattern"
+							],
+							toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+							toolbar2: "print preview media | forecolor backcolor emoticons | fontsizeselect",
+							image_advtab: true,
+							templates: [
+								{title: 'Test template 1', content: 'Test 1'},
+								{title: 'Test template 2', content: 'Test 2'}
+							]
+						});
+						$(".close").click(function(){
+							data_dismiss = $(this).attr("data-dismiss");
+							$("."+data_dismiss).slideUp("slow");
+						});
+					</script>
+					<script>
+						$(".confirm_delete").click(function(){
+							element = $(this).attr("data-element");
+							var r=confirm("Sure, you want to Delete "+element+"?");
+							if (r==true)
+							{
+
+								target = $(this).attr("href");
+								document.location.href = target;
+							}
+							else
+							{
+								return false;
+							}
+						});
+					</script>
 			  <?php
 			}
 			?>

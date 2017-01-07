@@ -25,6 +25,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:700,500" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/style.css">
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/tinymce/js/tinymce/tinymce.min.js"></script>
 </head>
 
 <body>
