@@ -1,5 +1,5 @@
 *{margin:0px; padding:0px;}
-	body{background:#222d32; color:#ccc;font-family: 'Roboto'; overflow-x:hidden;}
+	body{background:#222d32; color:#ccc;font-family: 'Roboto'; overflow:hidden;}
 	.header{background:#357ca5;color:#fff;} 
 	.header a{color:#fff!important;} 
 	.header li{list-style:none; padding-top:10px;}
