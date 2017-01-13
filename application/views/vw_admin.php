@@ -118,8 +118,8 @@
 <ul>
 	<a href="<?php echo base_url();?>Admin"><li><h5><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</h5></li></a>
 	<a href="<?php echo base_url();?>Admin/about"><li><h5><i class="fa fa-clone" aria-hidden="true"></i> About</h5></li></a>
-	<a href="<?php echo base_url();?>Admin/portfolio"><li><h5><i class="fa fa-file-code-o" aria-hidden="true"></i> Portfolio</h5></li></a>
-	<a href="<?php echo base_url();?>Admin/reviews"><li><h5><i class="fa fa-comments-o" aria-hidden="true"></i> Reviews</h5></li></a>
+	<a href="<?php echo base_url();?>Admin/supply"><li><h5><i class="fa fa-file-code-o" aria-hidden="true"></i> Supply Chain Solution</h5></li></a>
+	<a href="<?php echo base_url();?>Admin/freights"><li><h5><i class="fa fa-comments-o" aria-hidden="true"></i> Freights</h5></li></a>
 	<a href="<?php echo base_url();?>Admin/team"><li><h5><i class="fa fa-users" aria-hidden="true"></i> Team</h5></li></a>
 	<a href="<?php echo base_url();?>Admin/slideshow"><li><h5><i class="fa fa-photo" aria-hidden="true"></i> Slideshow</h5></li></a>
 
@@ -141,10 +141,10 @@ else if(isset($vw_inbox))
 
 	$this->load->view($vw_inbox);
 }
-else if(isset($vw_about))
+else if(isset($vw_pages))
 {
 
-	$this->load->view($vw_about);
+	$this->load->view($vw_pages);
 }
 else if(isset($vw_portfolio))
 {

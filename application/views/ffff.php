@@ -19,70 +19,61 @@
 				}
 				?>
 				<div class="cat">
-				<h3>Update Details</h3>
+					<?php
+					foreach ($pages as $key => $value) {
+					?>
+				<h3>Update <?php echo $value->pages_name;?></h3>
 			  <div class="row">
-			  <div class="col-sm-12" style="padding-right:50px;">
+			  <div class="col-sm-12" style="padding-right:25px;">
 			 
 			<?php
-				 echo form_open_multipart('Admin/update_about');
-				 foreach ($about as $key => $value) {
+				 echo form_open_multipart('Admin/update_pages/');
+
 			
 			?>
-			<input type ="hidden" value = "<?php echo $value->about_id;?>" name="about_id">
-											
-			  <div style="margin-top:5px;">
-				
-				<div class="form-group" style="padding:5px; margin:15px 0px;">
-				  <textarea  class="editable" id="name" name="about_details" placeholder="content" type="text"  rows="6" style=" height:275px;"><?php echo $value->about_details;?> </textarea><br>
-				<br><br>
-				</div>
-			  </div> 
-
-			  
+			<input type ="hidden" value = "<?php echo $value->pages_name;?>" name="pages_name">
 			  	  <div class="row">
-				        <div class="col-xs-4">
-							<div class="form-group">
-							  <h4>Header Image:</h4>
-							</div>
-						    <div style="padding:5px; margin:10px 0px;">
-							    <img src="<?php echo base_url()?><?php echo $value->about_photo_1?>" class="img-responsive" style="height:22vh; width:22vw;">
-						    </div>
-							<div class="form-group" style="padding:5px; margin:10px 0px;">
-								<input id="a" name="about_photo_1" placeholder="Add a photo" type="file">
-							</div>
-					    </div>
-				   
-				  
-						<div class="col-xs-4">
-						  <div class="form-group">
-							  <h4>Side Image 1:</h4>
-						  </div>
-						  <div style="padding:5px; margin:10px 0px;">
-							  <img src="<?php echo base_url()?><?php echo $value->about_photo_2?>" class="img-responsive" style="height:22vh; width:22vw;">
-						  </div>
-						  <div class="form-group" style="padding:5px; margin:10px 0px;">
-							  <input id="a" name="about_photo_2" placeholder="Add a photo" type="file">
-						  </div>
+				<div class="col-sm-3 form-group">
+				  <h4>Image 1:</h4>
+				</div>
+				<div class="col-sm-6 form-group">
+					<input id="a" name="pages_photo_1" placeholder="Add a photo" type="file">
+			    </div>
+					  <div class="col-sm-3" style="padding:5px;">
+						  <img src="<?php echo base_url()?><?php echo $value->pages_photo_1?>" class="img-responsive">
 					  </div>
-				  
-				  
-						<div class="col-xs-4">
-						  <div class="form-group">
-							  <h4>Side Image 2:</h4>
-						  </div>
-						  <div style="padding:5px; margin:10px 0px;">
-							  <img src="<?php echo base_url()?><?php echo $value->about_photo_3?>" class="img-responsive" style="height:22vh; width:22vw;">
-						  </div>
-						  <div class="form-group"  style="padding:5px; margin:10px 0px;">
-							  <input id="a" name="about_photo_3" placeholder="Add a photo" type="file">
-						  </div>
-						</div>
-
-
-		
-			  
-			   
-			    	<div class="row">
+			  </div>
+				  <div class="row">
+					  <div class="col-sm-3 form-group">
+						  <h4>Image 2:</h4>
+					  </div>
+					  <div class="col-sm-6 form-group">
+						  <input id="a" name="pages_photo_2" placeholder="Add a photo" type="file">
+					  </div>
+					  <div class="col-sm-3" style=" padding:5px;">
+						  <img src="<?php echo base_url()?><?php echo $value->pages_photo_2?>" class="img-responsive">
+					  </div>
+				  </div>
+				  <div class="row">
+					  <div class="col-sm-3 form-group">
+						  <h4>Image 3:</h4>
+					  </div>
+					  <div class="col-sm-6 form-group">
+						  <input id="a" name="pages_photo_3" placeholder="Add a photo" type="file">
+					  </div>
+					  <div class="col-sm-3" style="padding:5px;">
+						  <img src="<?php echo base_url()?><?php echo $value->pages_photo_3?>" class="img-responsive">
+					  </div>
+				  </div>
+			  <div class="row">
+				<div class="col-sm-3 form-group">
+				  <h4>Details</h4>
+				</div>
+				<div class="col-sm-9 form-group">
+				  <textarea  class="editable" id="name" name="pages_details" placeholder="content" type="text"  rows="6"><?php echo $value->pages_details;?> </textarea><br>
+				</div>
+			  </div>
+				  <div class="row">
 			  <button class="btn btn-primary pull-right" type="submit" style=" margin-top:15px;"> Update </button>
 			  </div>
 		

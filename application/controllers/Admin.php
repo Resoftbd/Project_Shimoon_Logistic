@@ -156,43 +156,71 @@ class Admin extends CI_Controller {
 				}
 			}
 		}
-	//Page about
+	//Pages
  public function about()
 	{
 		$this->load->model('Mdl_update');
-		$data['vw_about'] = 'vw_about';
+		$data['vw_pages'] = 'vw_pages';
 		$data['msg'] = '';
 		$num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
-		$data['about'] = $this->Mdl_admin->load_about();
+		$data['pages'] = $this->Mdl_admin->load_pages("About");
 	
 		$this->load->view('vw_admin',$data);
 	}
-	public function update_about()
+	public function supply()
 	{
 		$this->load->model('Mdl_update');
-        $target_file_1 = $this->about_photo_1_update();
-		$target_file_2 = $this->about_photo_2_update();
-		$target_file_3 = $this->about_photo_3_update();
-        $name_1 = $_FILES['about_photo_1']['name'];
-		$name_2 = $_FILES['about_photo_2']['name'];
-		$name_3 = $_FILES['about_photo_3']['name'];
+		$data['vw_pages'] = 'vw_pages';
+		$data['msg'] = '';
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+		$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$data['pages'] = $this->Mdl_admin->load_pages("Supply Chain Solution");
 
-        $data['vw_about'] = 'vw_about';
+		$this->load->view('vw_admin',$data);
+	}
+	public function freights()
+	{
+		$this->load->model('Mdl_update');
+		$data['vw_pages'] = 'vw_pages';
+		$data['msg'] = '';
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+		$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$data['pages'] = $this->Mdl_admin->load_pages("Freights");
+
+		$this->load->view('vw_admin',$data);
+	}
+	public function update_pages()
+	{
+		$this->load->model('Mdl_update');
+        $target_file_1 = $this->pages_photo_1_update();
+		$target_file_2 = $this->pages_photo_2_update();
+		$target_file_3 = $this->pages_photo_3_update();
+        $name_1 = $_FILES['pages_photo_1']['name'];
+		$name_2 = $_FILES['pages_photo_2']['name'];
+		$name_3 = $_FILES['pages_photo_3']['name'];
+
+        $data['vw_pages'] = 'vw_pages';
         $num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
-        $data['about'] = $this->Mdl_update->about_updated($target_file_1,$target_file_2,$target_file_3,$name_1,$name_2,$name_3);
+        $data['pages'] = $this->Mdl_update->about_updated($target_file_1,$target_file_2,$target_file_3,$name_1,$name_2,$name_3);
     	$data['profile'] = $this->Mdl_admin->load_profile();
     	$data['settings'] = $this->Mdl_admin->load_settings();
 
-    	if($data['about'] ==0)
+    	if($data['pages'] ==0)
 		{
 			
-			$data['about'] = $this->Mdl_admin->load_about();
+			$data['pages'] = $this->Mdl_admin->load_pages($page_name);
 			$data['settings'] = $this->Mdl_admin->load_settings();
 			$data['profile'] = $this->Mdl_admin->load_profile();
 			$data['msg'] = 'Sorry!! There is a problem in Update!!';
@@ -213,24 +241,24 @@ class Admin extends CI_Controller {
 		
 		$this->load->view('vw_admin',$data);   	
 	}
-		private function about_photo_1_update()
+		private function pages_photo_1_update()
 		{
-			if($_FILES['about_photo_1']['name']!='')
+			if($_FILES['pages_photo_1']['name']!='')
 			{
-				$name = $_FILES['about_photo_1']['name'];
+				$name = $_FILES['pages_photo_1']['name'];
 				$name_ext = explode('.',$name );
 				$ext = end($name_ext);
 				$target_name = uniqid(rand()).".".$ext;
 				$target_file = "assets/upload/photo/".$target_name;
 				$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
-				$file_type = $_FILES['about_photo_1']['type'];
+				$file_type = $_FILES['pages_photo_1']['type'];
 
 				if(in_array($ext, $allowed_types))
 				{
-					if(is_uploaded_file($_FILES['about_photo_1']['tmp_name']))
+					if(is_uploaded_file($_FILES['pages_photo_1']['tmp_name']))
 						
 						{
-							if(move_uploaded_file($_FILES['about_photo_1']['tmp_name'], $target_file))
+							if(move_uploaded_file($_FILES['pages_photo_1']['tmp_name'], $target_file))
 							{
 								
 								return $target_file;
@@ -245,24 +273,24 @@ class Admin extends CI_Controller {
 				}
 			}
 		}
-	private function about_photo_2_update()
+	private function pages_photo_2_update()
 	{
-		if($_FILES['about_photo_2']['name']!='')
+		if($_FILES['pages_photo_2']['name']!='')
 		{
-			$name = $_FILES['about_photo_2']['name'];
+			$name = $_FILES['pages_photo_2']['name'];
 			$name_ext = explode('.',$name );
 			$ext = end($name_ext);
 			$target_name = uniqid(rand()).".".$ext;
 			$target_file = "assets/upload/photo/".$target_name;
 			$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
-			$file_type = $_FILES['about_photo_2']['type'];
+			$file_type = $_FILES['pages_photo_2']['type'];
 
 			if(in_array($ext, $allowed_types))
 			{
-				if(is_uploaded_file($_FILES['about_photo_2']['tmp_name']))
+				if(is_uploaded_file($_FILES['pages_photo_2']['tmp_name']))
 
 				{
-					if(move_uploaded_file($_FILES['about_photo_2']['tmp_name'], $target_file))
+					if(move_uploaded_file($_FILES['pages_photo_2']['tmp_name'], $target_file))
 					{
 
 						return $target_file;
@@ -277,24 +305,24 @@ class Admin extends CI_Controller {
 			}
 		}
 	}
-	private function about_photo_3_update()
+	private function pages_photo_3_update()
 	{
-		if($_FILES['about_photo_3']['name']!='')
+		if($_FILES['pages_photo_3']['name']!='')
 		{
-			$name = $_FILES['about_photo_3']['name'];
+			$name = $_FILES['pages_photo_3']['name'];
 			$name_ext = explode('.',$name );
 			$ext = end($name_ext);
 			$target_name = uniqid(rand()).".".$ext;
 			$target_file = "assets/upload/photo/".$target_name;
 			$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
-			$file_type = $_FILES['about_photo_3']['type'];
+			$file_type = $_FILES['pages_photo_3']['type'];
 
 			if(in_array($ext, $allowed_types))
 			{
-				if(is_uploaded_file($_FILES['about_photo_3']['tmp_name']))
+				if(is_uploaded_file($_FILES['pages_photo_3']['tmp_name']))
 
 				{
-					if(move_uploaded_file($_FILES['about_photo_3']['tmp_name'], $target_file))
+					if(move_uploaded_file($_FILES['pages_photo_3']['tmp_name'], $target_file))
 					{
 
 						return $target_file;
