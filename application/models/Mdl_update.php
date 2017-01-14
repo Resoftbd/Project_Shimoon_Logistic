@@ -302,49 +302,49 @@ class Mdl_update extends CI_Model {
 		}
 
 		}
-	// ## Team Update
-		public function team_updated($target_file,$name)
+	// ## customer Update
+		public function customer_updated($target_file,$name)
 		{
-		$id = $this->input->post('team_id');
-	    $team_name = $this->input->post('team_name');
-        $team_designation = $this->input->post('team_designation');
+		    $id = $this->input->post('customer_id');
+			$customer_name = $this->input->post('customer_name');
+			$customer_details = $this->input->post('customer_details');
    
     	
 
 			$attr  = array(	
-			'team_name' => $team_name,
-			'team_designation' => $team_designation,
+			'customer_name' => $customer_name,
+			'customer_details' => $customer_details,
 			
 		
 		
 			);
 
-		$this->db->where('team_id',$id);
-		$query = $this->db->update('team',$attr);
+		$this->db->where('customer_id',$id);
+		$query = $this->db->update('customer',$attr);
 
-		$team_photo = $target_file;
+		$customer_photo = $target_file;
 	    if($name!='')
         {
-			$query = $this->db->get_where('team',array('team_id'=>$id));
+			$query = $this->db->get_where('customer',array('customer_id'=>$id));
 			$photo_url = $query->result();
 			foreach ($photo_url as $value) 
 			{
-				if(file_exists($value->team_photo))
+				if(file_exists($value->customer_photo))
 				{
-					unlink($value->team_photo);
+					unlink($value->customer_photo);
 				}
 			}
 			$attr2  = array(	
 			
-			'team_photo' => $team_photo,
+			'customer_photo' => $customer_photo,
 				
 			);
-			$this->db->where('team_id',$id);
-			$query = $this->db->update('team',$attr2);
+			$this->db->where('customer_id',$id);
+			$query = $this->db->update('customer',$attr2);
 		}
 		if($query)
 		{
-			$query2 = $this->db->get('team');
+			$query2 = $this->db->get('customer');
 			return $query2->result();
 		}
 		else

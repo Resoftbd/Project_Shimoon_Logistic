@@ -116,11 +116,11 @@
 </div>
 </div>
 <ul>
-	<a href="<?php echo base_url();?>Admin"><li><h5><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</h5></li></a>
+	<a href="<?php echo base_url();?>Admin"><li><h5><i class="fa fa-tachometer" aria-hidden="true"></i> Home</h5></li></a>
 	<a href="<?php echo base_url();?>Admin/about"><li><h5><i class="fa fa-clone" aria-hidden="true"></i> About</h5></li></a>
 	<a href="<?php echo base_url();?>Admin/supply"><li><h5><i class="fa fa-file-code-o" aria-hidden="true"></i> Supply Chain Solution</h5></li></a>
 	<a href="<?php echo base_url();?>Admin/freights"><li><h5><i class="fa fa-comments-o" aria-hidden="true"></i> Freights</h5></li></a>
-	<a href="<?php echo base_url();?>Admin/team"><li><h5><i class="fa fa-users" aria-hidden="true"></i> Team</h5></li></a>
+	<a href="<?php echo base_url();?>Admin/customer"><li><h5><i class="fa fa-users" aria-hidden="true"></i> Customer</h5></li></a>
 	<a href="<?php echo base_url();?>Admin/slideshow"><li><h5><i class="fa fa-photo" aria-hidden="true"></i> Slideshow</h5></li></a>
 
 	<a href="<?php echo base_url();?>Admin/inbox"><li><h5><i class="fa fa-envelope" aria-hidden="true"></i> Inbox <span class="badge"><?php echo $unread;?></span></h5></li></a>
@@ -151,16 +151,16 @@ else if(isset($vw_portfolio))
 
 	$this->load->view($vw_portfolio);
 }
-else if(isset($vw_team))
+else if(isset($vw_customer))
 {
 
-	$this->load->view($vw_team);
+	$this->load->view($vw_customer);
 }
 
-else if(isset($vw_reviews))
+else if(isset($vw_home))
 {
 
-	$this->load->view($vw_reviews);
+	$this->load->view($vw_home);
 }
 else if(isset($vw_add_admin))
 {

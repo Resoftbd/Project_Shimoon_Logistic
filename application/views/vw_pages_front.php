@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+							<!-- NAVBAR ENDS HERE-->
+										
+										
+										<!-- Slider starts here-->
+										
+<?php
+foreach($pages as $value) {
+
+
+    ?>
+    <div class="container-fluid slider-div">
+        <div id="myCarousel" class="carousel slide jumborton" data-ride="carousel" data-interval="4500">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"> I</li>
+                <li data-target="#myCarousel" data-slide-to="1"> II</li>
+                <li data-target="#myCarousel" data-slide-to="2"> III</li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner jumborton" role="listbox">
+                <div class="item active">
+                    <img src="img/log1.jpg" alt="Mashrafee" width="1367px" height="400px"
+                         class="img-responsive slider-image">
+                </div>
+
+                <div class="item">
+                    <img src="img/log2.jpg" alt="Mashrafee" width="1367px" height="400px"
+                         class="img-responsive slider-image">
+                </div>
+
+                <div class="item">
+                    <img src="img/log3.jpg" alt="Mashrafee" width="1367px" height="400px"
+                         class="img-responsive slider-image">
+                </div>
+
+            </div>
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+
+    <!--Slider ends here-->
+
+    <!--Rest of the items-->
+
+    <div class="row rest_contents" style="padding-left:172px;">
+        <div class="col-xs-6">
+            <h2 style="color:#3071A9"><?php echo $value->pages_name?></h2>
+
+            <p><?php echo $value->pages_details?></p>
+        </div>
+
+        <div class="col-xs-6">
+            <br><br><br>
+            <img src="<?php echo base_url()?><?php echo $value->pages_photo_2?>" class="img-responsive demo-image">
+            <br><br><br>
+            <img src="<?php echo base_url()?><?php echo $value->pages_photo_3?>" class="img-responsive demo-image">
+        </div>
+
+    </div>
+    <?php
+}
+    ?>
+
+</body>
+</html>

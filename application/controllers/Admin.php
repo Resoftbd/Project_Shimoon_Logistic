@@ -16,7 +16,23 @@ class Admin extends CI_Controller {
     //  ##Load pages
 	public function index()
 	{
-		$this->inbox();
+		$this->home();
+	}
+	public function home(){
+
+        $this->load->database();
+        $this->load->model('Mdl_admin');
+        $data['vw_home'] = 'vw_home';
+        $data['msg'] = '';
+        $data['settings'] = $this->Mdl_admin->load_settings();
+        $data['profile'] = $this->Mdl_admin->load_profile();
+        $data['home'] = $this->Mdl_admin->load_home();
+        $data['admin_name'] = $this->session->userdata('admin_name');
+        $num_rows = $this->db->count_all("inbox");
+        $data['inbox_total'] = $num_rows;
+        $data['inbox_count'] = $this->Mdl_admin->inbox_count();
+
+        $this->load->view('vw_admin',$data);
 	}
 
 	public function dashboard()
@@ -167,7 +183,7 @@ class Admin extends CI_Controller {
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
-		$data['pages'] = $this->Mdl_admin->load_pages("About");
+		$data['pages'] = $this->Mdl_admin->load_pages("About Us");
 	
 		$this->load->view('vw_admin',$data);
 	}
@@ -497,25 +513,25 @@ class Admin extends CI_Controller {
 		redirect('admin/portfolio/'.$query);
 	}
 	
-	// Team
+	// customer
 	
-	 public function team()
+	 public function customer()
 	{
 		$this->load->model('Mdl_update');
-		$data['vw_team'] = 'vw_team';
+		$data['vw_customer'] = 'vw_customer';
 		$data['msg'] = '';
 		$num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
-		$data['team'] = $this->Mdl_admin->load_team();
+		$data['customer'] = $this->Mdl_admin->load_customer();
 	
 		$this->load->view('vw_admin',$data);
 	}
-	public function team_publish()
+	public function add_customer()
 	{
-		$data['vw_team'] = 'vw_team';
+		$data['vw_customer'] = 'vw_customer';
 		$data['msg'] = '';
 		$num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
@@ -523,41 +539,41 @@ class Admin extends CI_Controller {
 		
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
-		$target_file =$this->team_photo();
-		$result = $this->Mdl_admin->team_insert($target_file);
+		$target_file =$this->customer_photo();
+		$result = $this->Mdl_admin->customer_insert($target_file);
 		if($result==1)
 		{
-			$data['msg'] = 'Successfully Added the team member!!';
+			$data['msg'] = 'Successfully Added the customer!!';
 			$data['msg_type'] = 'success';
 		}
 		else
 		{
-			$data['msg'] = 'Sorry!! team member Couldnt added!!Try Again';
+			$data['msg'] = 'Sorry!! customer Couldnt added!!Try Again';
 			$data['msg_type'] = 'danger';
 		}
-		$data['team'] = $this->Mdl_admin->load_team();
+		$data['customer'] = $this->Mdl_admin->load_customer();
 		
 		$this->load->view('vw_admin',$data);
 			}
 
 
-		private function team_photo()
+		private function customer_photo()
 		{
 			
-				$name = $_FILES['team_photo']['name'];
+				$name = $_FILES['customer_photo']['name'];
 				$name_ext = explode('.',$name );
 				$ext = end($name_ext);
 				$target_name = uniqid(rand()).".".$ext;
-				$target_file = "assets/upload/team/".$target_name;
+				$target_file = "assets/upload/customer/".$target_name;
 				$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
-				$file_type = $_FILES['team_photo']['type'];
+				$file_type = $_FILES['customer_photo']['type'];
 
 				if(in_array($ext, $allowed_types))
 				{
-					if(is_uploaded_file($_FILES['team_photo']['tmp_name']))
+					if(is_uploaded_file($_FILES['customer_photo']['tmp_name']))
 						
 						{
-							if(move_uploaded_file($_FILES['team_photo']['tmp_name'], $target_file))
+							if(move_uploaded_file($_FILES['customer_photo']['tmp_name'], $target_file))
 							{
 								
 								return $target_file;
@@ -571,24 +587,24 @@ class Admin extends CI_Controller {
 					return false;
 				}
 			}
-	public function update_team()
+	public function update_customer()
 	{
 		$this->load->model('Mdl_update');
-        $target_file = $this->team_photo_update();
-        $name = $_FILES['team_photo']['name'];
+        $target_file = $this->customer_photo_update();
+        $name = $_FILES['customer_photo']['name'];
 
-        $data['vw_team'] = 'vw_team';
+        $data['vw_customer'] = 'vw_customer';
         $num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
-        $data['team'] = $this->Mdl_update->team_updated($target_file,$name);
+        $data['customer'] = $this->Mdl_update->customer_updated($target_file,$name);
     	$data['profile'] = $this->Mdl_admin->load_profile();
     	$data['settings'] = $this->Mdl_admin->load_settings();
 
-    	if($data['team'] ==0)
+    	if($data['customer'] ==0)
 		{
 			
-			$data['team'] = $this->Mdl_admin->load_team();
+			$data['customer'] = $this->Mdl_admin->load_customer();
 			$data['settings'] = $this->Mdl_admin->load_settings();
 			$data['profile'] = $this->Mdl_admin->load_profile();
 			$data['msg'] = 'Sorry!! There is a problem in Update!!';
@@ -600,7 +616,7 @@ class Admin extends CI_Controller {
 			
 			$data['settings'] = $this->Mdl_admin->load_settings();
 			$data['profile'] = $this->Mdl_admin->load_profile();
-			$data['msg'] = 'Successfully updated team!!';
+			$data['msg'] = 'Successfully updated customer!!';
 			$data['msg_type'] = 'success';
 		}
 		
@@ -609,24 +625,24 @@ class Admin extends CI_Controller {
 		
 		$this->load->view('vw_admin',$data);   	
 	}
-		private function team_photo_update()
+		private function customer_photo_update()
 		{
-			if($_FILES['team_photo']['name']!='')
+			if($_FILES['customer_photo']['name']!='')
 			{
-				$name = $_FILES['team_photo']['name'];
+				$name = $_FILES['customer_photo']['name'];
 				$name_ext = explode('.',$name );
 				$ext = end($name_ext);
 				$target_name = uniqid(rand()).".".$ext;
-				$target_file = "assets/upload/team/".$target_name;
+				$target_file = "assets/upload/customer/".$target_name;
 				$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
-				$file_type = $_FILES['team_photo']['type'];
+				$file_type = $_FILES['customer_photo']['type'];
 
 				if(in_array($ext, $allowed_types))
 				{
-					if(is_uploaded_file($_FILES['team_photo']['tmp_name']))
+					if(is_uploaded_file($_FILES['customer_photo']['tmp_name']))
 						
 						{
-							if(move_uploaded_file($_FILES['team_photo']['tmp_name'], $target_file))
+							if(move_uploaded_file($_FILES['customer_photo']['tmp_name'], $target_file))
 							{
 								
 								return $target_file;
@@ -642,19 +658,19 @@ class Admin extends CI_Controller {
 			}
 		}
  	
- 	public function team_delete($id)
+ 	public function customer_delete($id)
 	{
-		$data['vw_team'] = 'vw_team';
+		$data['vw_customer'] = 'vw_customer';
 		$data['msg'] = '';		
 		$num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
-		$query = $this->Mdl_admin->delete_team($id);
+		$query = $this->Mdl_admin->delete_customer($id);
 	
-		$data['team'] = $this->Mdl_admin->load_team();
-		redirect('admin/team/'.$query);
+		$data['customer'] = $this->Mdl_admin->load_customer();
+		redirect('admin/customer/'.$query);
 	}
 	//Reviews
     public function reviews()

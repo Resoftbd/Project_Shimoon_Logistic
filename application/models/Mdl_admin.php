@@ -75,6 +75,29 @@ class Mdl_admin extends CI_Model {
 		}
 
 	}
+
+	public function message()
+	{
+		$inbox_name = $this->input->post('inbox_name');
+		$inbox_email = $this->input->post('inbox_email');
+		$inbox_message = $this->input->post('inbox_message');
+		$this->db->set('inbox_date','NOW()',FALSE);
+
+		$attr = array(
+			'inbox_name' => $inbox_name,
+			'inbox_email' => $inbox_email,
+			'inbox_message' => $inbox_message,
+		);
+		$query = $this->db->insert('inbox',$attr);
+		if($query)
+		{
+			return 1;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	public function load_inbox($per_page,$offset)
 	{
 		$page = ($offset-1)*$per_page;
@@ -249,22 +272,34 @@ class Mdl_admin extends CI_Model {
 			return 'x';
 		}
 	}
-	public function team_insert($target_file)
+	#Home
+	public function load_home()
+	{
+		$this->db->order_by('home_id','ASC');
+		$query =$this->db->get('home');
+		if($query)
+		{
+			return $query->result();
+		}
+	}
+	# Customer
+
+	public function customer_insert($target_file)
 	{
 		
-		$team_name = $this->input->post('team_name');
-		$team_designation= $this->input->post('team_designation');
+		$customer_name = $this->input->post('customer_name');
+		$customer_details= $this->input->post('customer_details');
 		$portfolio_link = $this->input->post('portfolio_link');
 
 		$attr = array(
-			'team_name' => $team_name,
-			'team_designation' => $team_designation,	
-			'team_photo' => $target_file,
+			'customer_name' => $customer_name,
+			'customer_details' => $customer_details,
+			'customer_photo' => $target_file,
 			
 
 			);
 		
-		$query = $this->db->insert('team',$attr);
+		$query = $this->db->insert('customer',$attr);
 		if($query)
 		{
 			return 1;
@@ -276,33 +311,33 @@ class Mdl_admin extends CI_Model {
 
 	}
 
-	public function load_team()
+	public function load_customer()
 	{
-		$this->db->order_by('team_id','DESC');
-		$query =$this->db->get('team');
+		$this->db->order_by('customer_id','DESC');
+		$query =$this->db->get('customer');
 		if($query)
 		{
 			return $query->result();
 		}
 	}
-	public function delete_team($id)
+	public function delete_customer($id)
 	{
-		$query=$this->db->get_where('team',array('team_id' =>$id,));
+		$query=$this->db->get_where('customer',array('customer_id' =>$id,));
 		if($query)
 		{
 			$result=$query->result();
 			foreach ($result as $value) 
 			{
-				if(file_exists($value->team_photo))
+				if(file_exists($value->customer_photo))
 					{
-						unlink($value->team_photo);
+						unlink($value->customer_photo);
 
 					}
 			}
 			
 		}
-		$this->db->where('team_id', $id);
-		$delete = $this->db->delete('team');
+		$this->db->where('customer_id', $id);
+		$delete = $this->db->delete('customer');
 		if ($this->db->affected_rows() > 0)
 	   	{
 	   		 return 1;
@@ -312,6 +347,7 @@ class Mdl_admin extends CI_Model {
 			return 'x';
 		}
 	}
+	#pages
 	public function load_pages($page_name)
 	{
 		$this->db->where('pages_name',$page_name);
