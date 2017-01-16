@@ -35,29 +35,77 @@ class Admin extends CI_Controller {
         $this->load->view('vw_admin',$data);
 	}
 
-	public function dashboard()
+	public function update_home()
 	{
-		$this->load->database();
-		$this->load->model('Mdl_admin');
-		$data['vw_dashboard'] = 'vw_dashboard';
-		$data['msg'] = '';
-		$data['settings'] = $this->Mdl_admin->load_settings();
-		$data['profile'] = $this->Mdl_admin->load_profile();
-		$data['admin_name'] = $this->session->userdata('admin_name');
+		$this->load->model('Mdl_update');
+		$target_file = $this->home_photo_update();
+		$name = $_FILES['home_photo']['name'];
+
+		$data['vw_home'] = 'vw_home';
 		$num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
-		$data['daily_visit'] = $this->Mdl_admin->daily_visit();
-		$data['all_visit'] = $this->Mdl_admin->all_visit();
- 		$data['weekly_visit'] = $this->Mdl_admin->total_visit(7);
- 		$data['monthly_visit'] = $this->Mdl_admin->total_visit(30);
- 		$data['monthly_progress'] = $this->Mdl_admin->monthly_visit();
+		$data['home'] = $this->Mdl_update->home_updated($target_file,$name);
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$data['settings'] = $this->Mdl_admin->load_settings();
+
+		if($data['home'] ==0)
+		{
+
+			$data['home'] = $this->Mdl_admin->load_home();
+			$data['settings'] = $this->Mdl_admin->load_settings();
+			$data['profile'] = $this->Mdl_admin->load_profile();
+			$data['msg'] = 'Sorry!! There is a problem in Update!!';
+			$data['msg_type'] = 'danger';
+		}
+
+		else
+		{
+
+			$data['settings'] = $this->Mdl_admin->load_settings();
+			$data['profile'] = $this->Mdl_admin->load_profile();
+			$data['msg'] = 'Successfully updated home!!';
+			$data['msg_type'] = 'success';
+		}
 
 
-	
- 		
+
+
 		$this->load->view('vw_admin',$data);
 	}
+	private function home_photo_update()
+	{
+		if($_FILES['home_photo']['name']!='')
+		{
+			$name = $_FILES['home_photo']['name'];
+			$name_ext = explode('.',$name );
+			$ext = end($name_ext);
+			$target_name = uniqid(rand()).".".$ext;
+			$target_file = "assets/upload/home/".$target_name;
+			$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
+			$file_type = $_FILES['home_photo']['type'];
+
+			if(in_array($ext, $allowed_types))
+			{
+				if(is_uploaded_file($_FILES['home_photo']['tmp_name']))
+
+				{
+					if(move_uploaded_file($_FILES['home_photo']['tmp_name'], $target_file))
+					{
+
+						return $target_file;
+					}
+
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+
 	//## Settings update
 
 	public function settings_update()

@@ -56,6 +56,58 @@ class Mdl_update extends CI_Model {
 		
 	
 	}
+	## Home update
+
+	public function home_updated($target_file,$name)
+	{
+		$id = $this->input->post('home_id');
+		$home_name = $this->input->post('home_name');
+		$home_details = $this->input->post('home_details');
+
+
+
+		$attr  = array(
+			'home_name' => $home_name,
+			'home_details' => $home_details,
+
+
+
+		);
+
+		$this->db->where('home_id',$id);
+		$query = $this->db->update('home',$attr);
+
+		$home_photo = $target_file;
+		if($name!='')
+		{
+			$query = $this->db->get_where('home',array('home_id'=>$id));
+			$photo_url = $query->result();
+			foreach ($photo_url as $value)
+			{
+				if(file_exists($value->home_photo))
+				{
+					unlink($value->home_photo);
+				}
+			}
+			$attr2  = array(
+
+				'home_photo' => $home_photo,
+
+			);
+			$this->db->where('home_id',$id);
+			$query = $this->db->update('home',$attr2);
+		}
+		if($query)
+		{
+			$query2 = $this->db->get('home');
+			return $query2->result();
+		}
+		else
+		{
+			return 0;
+		}
+
+	}
 	// ## Settings Update
 	public function settings_edited($target_file1,$name1,$target_file2,$name2)
 	{

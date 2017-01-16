@@ -37,7 +37,8 @@
 				  <textarea  class="editable" id="name" name="pages_details" placeholder="content" type="text"  rows="6" style=" height:275px;"><?php echo $value->pages_details;?> </textarea><br>
 				<br><br>
 				</div>
-			  </div> 
+			  </div>
+
 
 			  
 			  	  <div class="row">

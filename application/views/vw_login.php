@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  <title>Resoft-Login</title>
+  <title>Login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" type="text/css">
@@ -59,7 +59,7 @@
 			
 		</div>
 			<div class="col-md-4 cntent <?php echo $class;?>">
-				<h3>Resoft Login</h3>
+				<h3>Login</h3>
 					<?php
 				
 			  

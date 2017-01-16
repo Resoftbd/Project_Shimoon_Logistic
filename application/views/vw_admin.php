@@ -124,7 +124,7 @@
 	<a href="<?php echo base_url();?>Admin/slideshow"><li><h5><i class="fa fa-photo" aria-hidden="true"></i> Slideshow</h5></li></a>
 
 	<a href="<?php echo base_url();?>Admin/inbox"><li><h5><i class="fa fa-envelope" aria-hidden="true"></i> Inbox <span class="badge"><?php echo $unread;?></span></h5></li></a>
-	<a href="<?php echo base_url();?>Admin/add_links"><li><h5><i class="fa fa-link" aria-hidden="true"></i> Add links</h5></li></a>
+
 </ul>
 </div>
 

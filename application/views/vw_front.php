@@ -75,6 +75,9 @@
 			padding-bottom: 10px;
 			border-bottom: 3px solid #1B6FB8;
 		}
+		.demo-image{width:98vw; height:35vh; padding:1vh; transition: width 0.4s, padding 0.4s;}
+		.demo-image:hover{width:100vw; height:35vh;  padding:0.2vh;}
+
 
 		footer {
 			padding: 20px;
@@ -130,6 +133,7 @@
 			-webkit-animation-duration: 2s;
 			visibility: visible;
 		}
+
 
 		@keyframes slides {
 			0% {
@@ -262,10 +266,10 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
                 <li><a href="<?php echo base_url();?>"><b>Home</b></a></li>
-				<li><a href="about"><b>About Us</b></a></li>
+				<li><a href="<?php echo base_url();?>about"><b>About Us</b></a></li>
 				<li><a href="<?php echo base_url();?>customers"><b>Our Customers</b></a></li>
-				<li><a href="supply"><b>Supply Chain Solution</b></a></li>
-				<li><a href="freights"><b>Freights</b></a></li>
+				<li><a href="<?php echo base_url();?>supply"><b>Supply Chain Solution</b></a></li>
+				<li><a href="<?php echo base_url();?>freights"><b>Freights</b></a></li>
 				<li><a href="<?php echo base_url();?>contact""><b>Contact Us</b></a></li>
 			</ul>
 		</div>
@@ -301,7 +305,7 @@
 
 <!-- Dynamic Main contents ends here-->
 <footer>
-	<a href=""><b>Desclaimer</b></a> | <a href=""><b>Policy</b></a> | <a href=""><b>About Us</b></a> | <a href=""><b>Career</b></a>
+	<a href=""><b>Desclaimer</b></a> | <a href=""><b>Policy</b></a> | <a href="<?php echo base_url();?>about"><b>About Us</b></a> | <a href=""><b>Career</b></a>
 	| <a href="<?php echo base_url();?>contact"><b>Contact us</b></a>
 	</br></br>Shimoon Logistic , Choumuhuni, Chittagong, Bangladesh
 	</br>&copy <b>SHIMOON LOGISTICS</b>
