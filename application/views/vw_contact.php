@@ -3,47 +3,7 @@
 
 										
 										
-										<!-- Slider starts here-->
-										
-
-		<div class="container-fluid slider-div">
-		  <div id="myCarousel" class="carousel slide jumborton" data-ride="carousel" data-interval="4500">
-			<!-- Indicators -->
-			<ol class="carousel-indicators">
-			  <li data-target="#myCarousel" data-slide-to="0" class="active"> I </li>
-			  <li data-target="#myCarousel" data-slide-to="1"> II </li>
-			  <li data-target="#myCarousel" data-slide-to="2"> III </li>
-			</ol>
-
-			<!-- Wrapper for slides -->
-			<div class="carousel-inner jumborton" role="listbox">
-			  <div class="item active">
-				<img src="img/log1.jpg" alt="Mashrafee" width="1367px" height="400px" class="img-responsive slider-image">
-			  </div>
-
-			  <div class="item">
-				<img src="img/log2.jpg" alt="Mashrafee" width="1367px" height="400px" class="img-responsive slider-image">
-			  </div>
-			
-			  <div class="item">
-				<img src="img/log3.jpg" alt="Mashrafee" width="1367px" height="400px" class="img-responsive slider-image">
-			  </div>
-
-			</div>
-			<!-- Left and right controls -->
-			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			  <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
-			  <span class="sr-only">Previous</span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			  <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-			  <span class="sr-only">Next</span>
-			</a>
-		  </div>
-		</div>
-
-
-									<!--Slider ends here-->
+		<h1 style="height:8vh;"></h1>
 									
 									<!--Rest of the items-->
 									
@@ -69,6 +29,12 @@
 		</div>
 
 		</div>
+
+
+		<div class="">
+			<div id="map" style="width: 74vw; height: 70vh; margin:3vh 13vw;"></div>
+
+
 		 <!-- Main content-->
 		<?php
 		echo form_open(base_url().'Front/send_message','class="form-horizontal"');
@@ -103,7 +69,25 @@
 				<div class="col-sm-8 form-group">
 				  <input class="form-control" id="dsgntn" name="inbox_message" placeholder="Tell Us Something" type="text">
 				</div>
-			  </div> 
+			  </div>
+
+					  <script>
+						  function initMap() {
+							  var uluru = {lat: 22.3338549, lng: 91.8122900};
+							  var map = new google.maps.Map(document.getElementById('map'), {
+								  zoom: 19,
+								  center: uluru
+							  });
+							  var marker = new google.maps.Marker({
+								  position: uluru,
+								  map: map
+							  });
+						  }
+					  </script>
+					  <script async defer
+							  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCT9JEXvz-8AlAxV72y1n9wGtqS3WsOivk&callback=initMap">
+					  </script>
+				  </div>
 			  <div class="row">
 			 <div class="col-sm-3 form-group">
 				  <a href="<?php echo $value->settings_facebook?>"><button class="btn btn-primary" type="submit" style="width:100%; margin-top:15px;">Find us in facebook</button>

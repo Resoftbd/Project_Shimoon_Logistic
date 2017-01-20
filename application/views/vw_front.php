@@ -15,6 +15,8 @@
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/css/bootstrap.min.js"></script>
 	<link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>
+	<script type="text/javascript" src="javascripts/jquery.googlemap.js"></script>
 	<style>
 		body {
 			margin: 0px;
@@ -22,6 +24,7 @@
 			width: 100%;
 			background: #eee;
 			overflow-x: hidden;
+			font-family:Montserrat;
 		}
 
 		.slide {
