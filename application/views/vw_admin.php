@@ -79,8 +79,7 @@
 									<input class="form-control" name="settings_address" value="'.$value1->settings_address.'" placeholder="Address" type="text">
 									<input class="form-control" name="settings_phone" value="'.$value1->settings_phone.'" placeholder="Mobile number" type="text" style="margin-top:5px;">
 									<input class="form-control" name="settings_email" value="'.$value1->settings_email.'" placeholder="Email address" type="text" style="margin-top:5px;">
-								    <input class="form-control" name="settings_facebook" value="'.$value1->settings_facebook.'" placeholder="Facebook" type="text" style="margin-top:5px;">
-									<li><button class="btn btn-primary" type="submit" style="width:100%; margin-top:15px;">Done</button></li>
+								    <li><button class="btn btn-primary" type="submit" style="width:100%; margin-top:15px;">Done</button></li>
 								
 								</ul>
 							    </li>
@@ -117,12 +116,13 @@
 </div>
 <ul>
 	<a href="<?php echo base_url();?>Admin"><li><h5><i class="fa fa-tachometer" aria-hidden="true"></i> Home</h5></li></a>
-	<a href="<?php echo base_url();?>Admin/about"><li><h5><i class="fa fa-clone" aria-hidden="true"></i> About</h5></li></a>
-	<a href="<?php echo base_url();?>Admin/supply"><li><h5><i class="fa fa-file-code-o" aria-hidden="true"></i> Supply Chain Solution</h5></li></a>
-	<a href="<?php echo base_url();?>Admin/freights"><li><h5><i class="fa fa-comments-o" aria-hidden="true"></i> Freights</h5></li></a>
+	<a href="<?php echo base_url();?>Admin/story"><li><h5><i class="fa fa-clone" aria-hidden="true"></i> Our Story</h5></li></a>
+	<a href="<?php echo base_url();?>Admin/technology"><li><h5><i class="fa fa-clone" aria-hidden="true"></i> Our Team</h5></li></a>
+	<a href="<?php echo base_url();?>Admin/team"><li><h5><i class="fa fa-clone" aria-hidden="true"></i> Technology</h5></li></a>
+	<a href="<?php echo base_url();?>Admin/services"><li><h5><i class="fa fa-comments-o" aria-hidden="true"></i> Services</h5></li></a>
 	<a href="<?php echo base_url();?>Admin/customer"><li><h5><i class="fa fa-users" aria-hidden="true"></i> Customer</h5></li></a>
+	<a href="<?php echo base_url();?>Admin/supply"><li><h5><i class="fa fa-file-code-o" aria-hidden="true"></i> Supply Chain Solution</h5></li></a>
 	<a href="<?php echo base_url();?>Admin/slideshow"><li><h5><i class="fa fa-photo" aria-hidden="true"></i> Slideshow</h5></li></a>
-
 	<a href="<?php echo base_url();?>Admin/inbox"><li><h5><i class="fa fa-envelope" aria-hidden="true"></i> Inbox <span class="badge"><?php echo $unread;?></span></h5></li></a>
 
 </ul>
@@ -131,12 +131,9 @@
 
 <!--dynamic page call starts here-->
 <?php
-if(isset($vw_dashboard))
-{
-	$this->load->view($vw_dashboard);
-}
 
-else if(isset($vw_inbox))
+
+if(isset($vw_inbox))
 {
 
 	$this->load->view($vw_inbox);
@@ -146,15 +143,21 @@ else if(isset($vw_pages))
 
 	$this->load->view($vw_pages);
 }
-else if(isset($vw_portfolio))
-{
 
-	$this->load->view($vw_portfolio);
-}
 else if(isset($vw_customer))
 {
 
 	$this->load->view($vw_customer);
+}
+else if(isset($vw_services))
+{
+
+	$this->load->view($vw_services);
+}
+else if(isset($vw_supply))
+{
+
+	$this->load->view($vw_supply);
 }
 
 else if(isset($vw_home))
@@ -180,7 +183,7 @@ else if(isset($vw_slideshow))
 
 else
 {
-	$this->load->view($vw_dashboard);
+	$this->load->view($vw_home);
 }
 ?>
 </body>

@@ -124,11 +124,12 @@ class Mdl_update extends CI_Model {
 
 			$attr  = array(	
 			'settings_title' => $settings_title,
+            'settings_copyright' => $settings_copyright,
 			'settings_address' => $settings_address,	
 			'settings_phone' => $settings_phone,
 			'settings_email' => $settings_email,
 			'settings_facebook' => $settings_facebook,
-			'settings_copyright' => $settings_copyright,
+
 
 			
 				
@@ -354,42 +355,144 @@ class Mdl_update extends CI_Model {
 		}
 
 		}
-	// ## customer Update
-		public function customer_updated($target_file,$name)
+	// ## services Update
+		public function services_updated($target_file,$name)
 		{
-		    $id = $this->input->post('customer_id');
-			$customer_name = $this->input->post('customer_name');
-			$customer_details = $this->input->post('customer_details');
+		    $id = $this->input->post('services_id');
+			$services_name = $this->input->post('services_name');
+			$services_details = $this->input->post('services_details');
    
     	
 
 			$attr  = array(	
-			'customer_name' => $customer_name,
-			'customer_details' => $customer_details,
+			'services_name' => $services_name,
+			'services_details' => $services_details,
 			
 		
 		
 			);
 
+		$this->db->where('services_id',$id);
+		$query = $this->db->update('services',$attr);
+
+		$services_photo = $target_file;
+	    if($name!='')
+        {
+			$query = $this->db->get_where('services',array('services_id'=>$id));
+			$photo_url = $query->result();
+			foreach ($photo_url as $value) 
+			{
+				if(file_exists($value->services_photo))
+				{
+					unlink($value->services_photo);
+				}
+			}
+			$attr2  = array(	
+			
+			'services_photo' => $services_photo,
+				
+			);
+			$this->db->where('services_id',$id);
+			$query = $this->db->update('services',$attr2);
+		}
+		if($query)
+		{
+			$query2 = $this->db->get('services');
+			return $query2->result();
+		}
+		else
+		{
+			return 0;
+		}
+
+		}
+	// ## supply Update
+	public function supply_updated($target_file,$name)
+	{
+		$id = $this->input->post('supply_id');
+		$supply_name = $this->input->post('supply_name');
+		$supply_details = $this->input->post('supply_details');
+
+
+
+		$attr  = array(
+			'supply_name' => $supply_name,
+			'supply_details' => $supply_details,
+
+
+
+		);
+
+		$this->db->where('supply_id',$id);
+		$query = $this->db->update('supply',$attr);
+
+		$supply_photo = $target_file;
+		if($name!='')
+		{
+			$query = $this->db->get_where('supply',array('supply_id'=>$id));
+			$photo_url = $query->result();
+			foreach ($photo_url as $value)
+			{
+				if(file_exists($value->supply_photo))
+				{
+					unlink($value->supply_photo);
+				}
+			}
+			$attr2  = array(
+
+				'supply_photo' => $supply_photo,
+
+			);
+			$this->db->where('supply_id',$id);
+			$query = $this->db->update('supply',$attr2);
+		}
+		if($query)
+		{
+			$query2 = $this->db->get('supply');
+			return $query2->result();
+		}
+		else
+		{
+			return 0;
+		}
+
+	}
+	// ## customer Update
+	public function customer_updated($target_file,$name)
+	{
+		$id = $this->input->post('customer_id');
+		$customer_name = $this->input->post('customer_name');
+		$customer_details = $this->input->post('customer_details');
+
+
+
+		$attr  = array(
+			'customer_name' => $customer_name,
+			'customer_details' => $customer_details,
+
+
+
+		);
+
 		$this->db->where('customer_id',$id);
 		$query = $this->db->update('customer',$attr);
 
 		$customer_photo = $target_file;
-	    if($name!='')
-        {
+		if($name!='')
+		{
 			$query = $this->db->get_where('customer',array('customer_id'=>$id));
 			$photo_url = $query->result();
-			foreach ($photo_url as $value) 
+			foreach ($photo_url as $value)
 			{
 				if(file_exists($value->customer_photo))
 				{
 					unlink($value->customer_photo);
 				}
 			}
-			$attr2  = array(	
-			
-			'customer_photo' => $customer_photo,
-				
+			$attr2  = array(
+
+				'customer_photo' => $customer_photo,
+
 			);
 			$this->db->where('customer_id',$id);
 			$query = $this->db->update('customer',$attr2);
@@ -404,7 +507,7 @@ class Mdl_update extends CI_Model {
 			return 0;
 		}
 
-		}
+	}
 
 
 

@@ -50,9 +50,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Front';
+$route['services'] = 'Front/services_view';
+$route['supply'] = 'Front/supply_view';
 $route['customers'] = 'Front/customer_view';
 $route['contact'] = 'Front/contact_us';
-$route['about'] = 'Front/about_view';
+$route['story'] = 'Front/story_view';
+$route['team'] = 'Front/team_view';
+$route['technology'] = 'Front/technology_view';
 $route['supply'] = 'Front/supply_view';
 $route['freights'] = 'Front/freights_view';
 $route['404_override'] = '';

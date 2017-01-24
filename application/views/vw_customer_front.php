@@ -63,7 +63,7 @@
 									
 		<div class="row rest_contents" style="padding-left:172px;">
 			<h2 style="color:#3071A9">Our Valueable customers</h2>
-					<p>Our commitment to sustainability helps us reduce waste and share the benefits with our customers. It permeates the way we do business, driving us to innovate and be creative in everything from warehousing operations to transportation, from solution design to procurement policy. Our commitment to sustainability helps us reduce waste and share the benefits with our customers. It permeates the way we do business, driving us to innovate and be creative in everything from warehousing operations to transportation, from solution design to procurement policy.</p>
+					<p>We seek to enrich the lives of those within our company as well as those we do business with.All the customers of ours is part of our family.And we do take care of customers.</p>
 		</div>
 
 									
@@ -82,7 +82,7 @@
 					?>
 					<div class="col-sm-4 upper_row <?php echo $side?>">
 						<div class="upper_row_content">
-							<img src="<?php echo base_url()?><?php echo $value2->customer_photo?>" class="img-responsive brand-logo">
+							<img src="<?php echo base_url()?><?php echo $value2->customer_photo?>" class="img-responsive" style="height: 40vh; width:100%">
 
 							<h3><?php echo $value2->customer_name?></h3>
 

@@ -20,13 +20,24 @@
 				?>
 				<div class="cat">
 				<h3>Add a home</h3>
+				<?php 
+				$j=0;
+				for($i=0;$i<2;$i++){
+				?>
+				<div class="row" style="padding:10px; margin:10px 0px;">
 				<?php
 				foreach($home as $value){
-
-
+				$j++;
+				if($i==0 && $j==4){
+				$j=0;
+				break;}
+				else if($i==1&& $j<4)
+				continue;
+				
+				else{
 				echo form_open_multipart('Admin/update_home');
 				?>
-					<div class="row">
+					
 						<div class="col-sm-4" style="padding-right:25px;">
 							<div class="row">
 								<div class="col-sm-3 form-group">
@@ -44,7 +55,7 @@
 								</div>
 
 								<div class="col-sm-9 form-group">
-									<textarea class="form-control" id="editable" name="home_details" placeholder="Details" type="text" required><?php echo $value->home_details ?></textarea>
+									<textarea class="form-control" id="editable" rows="10" name="home_details" placeholder="Details" type="text" required><?php echo $value->home_details ?></textarea>
 								</div>
 							</div>
 
@@ -73,13 +84,18 @@
 
 						<!-- Showing all news titles-->
 
-					</div>
+					
 
 
 					<?php
 					echo form_close();
 				}
+				}
+				
 				?>
+				</div>
+				
+				<?php } ?>
 
 				</div>
 

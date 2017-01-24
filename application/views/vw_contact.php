@@ -24,7 +24,7 @@
 			}
 			?>
 			<h2 style="color:#3071A9">Contact Us</h2><br>
-					<p>Our commitment to sustainability helps us reduce waste and share the benefits with our customers. It permeates the way we do business, driving us to innovate and be creative in everything from warehousing operations to transportation, from solution design to procurement policy. Our commitment to sustainability helps us reduce waste and share the benefits with our customers. It permeates the way we do business, driving us to innovate and be creative in everything from warehousing operations to transportation, from solution design to procurement policy.</p>
+					<p>Find Out How We Can Help You Today!For any kind of queries just send us a message or call.Also you can meet us in office just in the center of the Chittagong.</p>
 		
 		</div>
 

@@ -140,19 +140,13 @@ class Admin extends CI_Controller {
 			$data['msg'] = 'Successfully updated Settings!!';
 			$data['msg_type'] = 'success';
 		}
-		$data['vw_dashboard'] = 'vw_dashboard';
+		$data['vw_home'] = 'vw_home';
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
 		$data['admin_name'] = $this->session->userdata('admin_name');
+		$data['home'] = $this->Mdl_admin->load_home();
 		
-		
- 		$data['total_post'] = $num_rows;
- 		$data['all_visit'] = $this->Mdl_admin->all_visit();
- 		$data['daily_visit'] = $this->Mdl_admin->daily_visit();
- 		$data['weekly_visit'] = $this->Mdl_admin->total_visit(7);
- 		$data['monthly_visit'] = $this->Mdl_admin->total_visit(30);
- 		$data['monthly_progress'] = $this->Mdl_admin->monthly_visit();
- 		
+
 		$this->load->view('vw_admin',$data);
     	
 	}
@@ -221,7 +215,7 @@ class Admin extends CI_Controller {
 			}
 		}
 	//Pages
- public function about()
+ public function story()
 	{
 		$this->load->model('Mdl_update');
 		$data['vw_pages'] = 'vw_pages';
@@ -231,11 +225,11 @@ class Admin extends CI_Controller {
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
-		$data['pages'] = $this->Mdl_admin->load_pages("About Us");
+		$data['pages'] = $this->Mdl_admin->load_pages("Our story");
 	
 		$this->load->view('vw_admin',$data);
 	}
-	public function supply()
+	public function technology()
 	{
 		$this->load->model('Mdl_update');
 		$data['vw_pages'] = 'vw_pages';
@@ -245,11 +239,11 @@ class Admin extends CI_Controller {
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
-		$data['pages'] = $this->Mdl_admin->load_pages("Supply Chain Solution");
+		$data['pages'] = $this->Mdl_admin->load_pages("Technology");
 
 		$this->load->view('vw_admin',$data);
 	}
-	public function freights()
+	public function team()
 	{
 		$this->load->model('Mdl_update');
 		$data['vw_pages'] = 'vw_pages';
@@ -259,10 +253,11 @@ class Admin extends CI_Controller {
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
-		$data['pages'] = $this->Mdl_admin->load_pages("Freights");
+		$data['pages'] = $this->Mdl_admin->load_pages("Our team");
 
 		$this->load->view('vw_admin',$data);
 	}
+
 	public function update_pages()
 	{
 		$this->load->model('Mdl_update');
@@ -560,10 +555,327 @@ class Admin extends CI_Controller {
 		$data['portfolio'] = $this->Mdl_admin->load_portfolio();
 		redirect('admin/portfolio/'.$query);
 	}
+	// services
+
+	public function services()
+	{
+		$this->load->model('Mdl_update');
+		$data['vw_services'] = 'vw_services';
+		$data['msg'] = '';
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+		$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$data['services'] = $this->Mdl_admin->load_services();
+
+		$this->load->view('vw_admin',$data);
+	}
+	public function add_services()
+	{
+		$data['vw_services'] = 'vw_services';
+		$data['msg'] = '';
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+
+		$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$target_file =$this->services_photo();
+		$result = $this->Mdl_admin->services_insert($target_file);
+		if($result==1)
+		{
+			$data['msg'] = 'Successfully Added the services!!';
+			$data['msg_type'] = 'success';
+		}
+		else
+		{
+			$data['msg'] = 'Sorry!! services Couldnt added!!Try Again';
+			$data['msg_type'] = 'danger';
+		}
+		$data['services'] = $this->Mdl_admin->load_services();
+
+		$this->load->view('vw_admin',$data);
+	}
+
+
+	private function services_photo()
+	{
+
+		$name = $_FILES['services_photo']['name'];
+		$name_ext = explode('.',$name );
+		$ext = end($name_ext);
+		$target_name = uniqid(rand()).".".$ext;
+		$target_file = "assets/upload/services/".$target_name;
+		$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
+		$file_type = $_FILES['services_photo']['type'];
+
+		if(in_array($ext, $allowed_types))
+		{
+			if(is_uploaded_file($_FILES['services_photo']['tmp_name']))
+
+			{
+				if(move_uploaded_file($_FILES['services_photo']['tmp_name'], $target_file))
+				{
+
+					return $target_file;
+				}
+
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public function update_services()
+	{
+		$this->load->model('Mdl_update');
+		$target_file = $this->services_photo_update();
+		$name = $_FILES['services_photo']['name'];
+
+		$data['vw_services'] = 'vw_services';
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+		$data['services'] = $this->Mdl_update->services_updated($target_file,$name);
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$data['settings'] = $this->Mdl_admin->load_settings();
+
+		if($data['services'] ==0)
+		{
+
+			$data['services'] = $this->Mdl_admin->load_services();
+			$data['settings'] = $this->Mdl_admin->load_settings();
+			$data['profile'] = $this->Mdl_admin->load_profile();
+			$data['msg'] = 'Sorry!! There is a problem in Update!!';
+			$data['msg_type'] = 'danger';
+		}
+
+		else
+		{
+
+			$data['settings'] = $this->Mdl_admin->load_settings();
+			$data['profile'] = $this->Mdl_admin->load_profile();
+			$data['msg'] = 'Successfully updated services!!';
+			$data['msg_type'] = 'success';
+		}
+
+
+
+
+		$this->load->view('vw_admin',$data);
+	}
+	private function services_photo_update()
+	{
+		if($_FILES['services_photo']['name']!='')
+		{
+			$name = $_FILES['services_photo']['name'];
+			$name_ext = explode('.',$name );
+			$ext = end($name_ext);
+			$target_name = uniqid(rand()).".".$ext;
+			$target_file = "assets/upload/services/".$target_name;
+			$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
+			$file_type = $_FILES['services_photo']['type'];
+
+			if(in_array($ext, $allowed_types))
+			{
+				if(is_uploaded_file($_FILES['services_photo']['tmp_name']))
+
+				{
+					if(move_uploaded_file($_FILES['services_photo']['tmp_name'], $target_file))
+					{
+
+						return $target_file;
+					}
+
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+
+	public function services_delete($id)
+	{
+		$data['vw_services'] = 'vw_services';
+		$data['msg'] = '';
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+		$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$query = $this->Mdl_admin->delete_services($id);
+
+		$data['services'] = $this->Mdl_admin->load_services();
+		redirect('admin/services/'.$query);
+	}
+	// supply
 	
+	 public function supply()
+	{
+		$this->load->model('Mdl_update');
+		$data['vw_supply'] = 'vw_supply';
+		$data['msg'] = '';
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+		$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$data['supply'] = $this->Mdl_admin->load_supply();
+	
+		$this->load->view('vw_admin',$data);
+	}
+	public function add_supply()
+	{
+		$data['vw_supply'] = 'vw_supply';
+		$data['msg'] = '';
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+		
+		$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$target_file =$this->supply_photo();
+		$result = $this->Mdl_admin->supply_insert($target_file);
+		if($result==1)
+		{
+			$data['msg'] = 'Successfully Added the supply!!';
+			$data['msg_type'] = 'success';
+		}
+		else
+		{
+			$data['msg'] = 'Sorry!! supply Couldnt added!!Try Again';
+			$data['msg_type'] = 'danger';
+		}
+		$data['supply'] = $this->Mdl_admin->load_supply();
+		
+		$this->load->view('vw_admin',$data);
+			}
+
+
+		private function supply_photo()
+		{
+			
+				$name = $_FILES['supply_photo']['name'];
+				$name_ext = explode('.',$name );
+				$ext = end($name_ext);
+				$target_name = uniqid(rand()).".".$ext;
+				$target_file = "assets/upload/supply/".$target_name;
+				$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
+				$file_type = $_FILES['supply_photo']['type'];
+
+				if(in_array($ext, $allowed_types))
+				{
+					if(is_uploaded_file($_FILES['supply_photo']['tmp_name']))
+						
+						{
+							if(move_uploaded_file($_FILES['supply_photo']['tmp_name'], $target_file))
+							{
+								
+								return $target_file;
+							}
+							
+								return false;					
+						}
+				}
+				else
+				{
+					return false;
+				}
+			}
+	public function update_supply()
+	{
+		$this->load->model('Mdl_update');
+        $target_file = $this->supply_photo_update();
+        $name = $_FILES['supply_photo']['name'];
+
+        $data['vw_supply'] = 'vw_supply';
+        $num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+        $data['supply'] = $this->Mdl_update->supply_updated($target_file,$name);
+    	$data['profile'] = $this->Mdl_admin->load_profile();
+    	$data['settings'] = $this->Mdl_admin->load_settings();
+
+    	if($data['supply'] ==0)
+		{
+			
+			$data['supply'] = $this->Mdl_admin->load_supply();
+			$data['settings'] = $this->Mdl_admin->load_settings();
+			$data['profile'] = $this->Mdl_admin->load_profile();
+			$data['msg'] = 'Sorry!! There is a problem in Update!!';
+			$data['msg_type'] = 'danger';
+		}
+		
+		else
+		{
+			
+			$data['settings'] = $this->Mdl_admin->load_settings();
+			$data['profile'] = $this->Mdl_admin->load_profile();
+			$data['msg'] = 'Successfully updated supply!!';
+			$data['msg_type'] = 'success';
+		}
+		
+ 
+ 	
+		
+		$this->load->view('vw_admin',$data);   	
+	}
+		private function supply_photo_update()
+		{
+			if($_FILES['supply_photo']['name']!='')
+			{
+				$name = $_FILES['supply_photo']['name'];
+				$name_ext = explode('.',$name );
+				$ext = end($name_ext);
+				$target_name = uniqid(rand()).".".$ext;
+				$target_file = "assets/upload/supply/".$target_name;
+				$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
+				$file_type = $_FILES['supply_photo']['type'];
+
+				if(in_array($ext, $allowed_types))
+				{
+					if(is_uploaded_file($_FILES['supply_photo']['tmp_name']))
+						
+						{
+							if(move_uploaded_file($_FILES['supply_photo']['tmp_name'], $target_file))
+							{
+								
+								return $target_file;
+							}
+							
+								return false;					
+						}
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+ 	
+ 	public function supply_delete($id)
+	{
+		$data['vw_supply'] = 'vw_supply';
+		$data['msg'] = '';		
+		$num_rows = $this->db->count_all("inbox");
+		$data['inbox_total'] = $num_rows;
+		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
+		$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$query = $this->Mdl_admin->delete_supply($id);
+	
+		$data['supply'] = $this->Mdl_admin->load_supply();
+		redirect('admin/supply/'.$query);
+	}
 	// customer
-	
-	 public function customer()
+
+	public function customer()
 	{
 		$this->load->model('Mdl_update');
 		$data['vw_customer'] = 'vw_customer';
@@ -574,7 +886,7 @@ class Admin extends CI_Controller {
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
 		$data['customer'] = $this->Mdl_admin->load_customer();
-	
+
 		$this->load->view('vw_admin',$data);
 	}
 	public function add_customer()
@@ -584,7 +896,7 @@ class Admin extends CI_Controller {
 		$num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
-		
+
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
 		$target_file =$this->customer_photo();
@@ -600,123 +912,123 @@ class Admin extends CI_Controller {
 			$data['msg_type'] = 'danger';
 		}
 		$data['customer'] = $this->Mdl_admin->load_customer();
-		
+
 		$this->load->view('vw_admin',$data);
-			}
+	}
 
 
-		private function customer_photo()
+	private function customer_photo()
+	{
+
+		$name = $_FILES['customer_photo']['name'];
+		$name_ext = explode('.',$name );
+		$ext = end($name_ext);
+		$target_name = uniqid(rand()).".".$ext;
+		$target_file = "assets/upload/customer/".$target_name;
+		$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
+		$file_type = $_FILES['customer_photo']['type'];
+
+		if(in_array($ext, $allowed_types))
 		{
-			
-				$name = $_FILES['customer_photo']['name'];
-				$name_ext = explode('.',$name );
-				$ext = end($name_ext);
-				$target_name = uniqid(rand()).".".$ext;
-				$target_file = "assets/upload/customer/".$target_name;
-				$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
-				$file_type = $_FILES['customer_photo']['type'];
+			if(is_uploaded_file($_FILES['customer_photo']['tmp_name']))
 
-				if(in_array($ext, $allowed_types))
+			{
+				if(move_uploaded_file($_FILES['customer_photo']['tmp_name'], $target_file))
 				{
-					if(is_uploaded_file($_FILES['customer_photo']['tmp_name']))
-						
-						{
-							if(move_uploaded_file($_FILES['customer_photo']['tmp_name'], $target_file))
-							{
-								
-								return $target_file;
-							}
-							
-								return false;					
-						}
+
+					return $target_file;
 				}
-				else
-				{
-					return false;
-				}
+
+				return false;
 			}
+		}
+		else
+		{
+			return false;
+		}
+	}
 	public function update_customer()
 	{
 		$this->load->model('Mdl_update');
-        $target_file = $this->customer_photo_update();
-        $name = $_FILES['customer_photo']['name'];
+		$target_file = $this->customer_photo_update();
+		$name = $_FILES['customer_photo']['name'];
 
-        $data['vw_customer'] = 'vw_customer';
-        $num_rows = $this->db->count_all("inbox");
+		$data['vw_customer'] = 'vw_customer';
+		$num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
-        $data['customer'] = $this->Mdl_update->customer_updated($target_file,$name);
-    	$data['profile'] = $this->Mdl_admin->load_profile();
-    	$data['settings'] = $this->Mdl_admin->load_settings();
+		$data['customer'] = $this->Mdl_update->customer_updated($target_file,$name);
+		$data['profile'] = $this->Mdl_admin->load_profile();
+		$data['settings'] = $this->Mdl_admin->load_settings();
 
-    	if($data['customer'] ==0)
+		if($data['customer'] ==0)
 		{
-			
+
 			$data['customer'] = $this->Mdl_admin->load_customer();
 			$data['settings'] = $this->Mdl_admin->load_settings();
 			$data['profile'] = $this->Mdl_admin->load_profile();
 			$data['msg'] = 'Sorry!! There is a problem in Update!!';
 			$data['msg_type'] = 'danger';
 		}
-		
+
 		else
 		{
-			
+
 			$data['settings'] = $this->Mdl_admin->load_settings();
 			$data['profile'] = $this->Mdl_admin->load_profile();
 			$data['msg'] = 'Successfully updated customer!!';
 			$data['msg_type'] = 'success';
 		}
-		
- 
- 	
-		
-		$this->load->view('vw_admin',$data);   	
-	}
-		private function customer_photo_update()
-		{
-			if($_FILES['customer_photo']['name']!='')
-			{
-				$name = $_FILES['customer_photo']['name'];
-				$name_ext = explode('.',$name );
-				$ext = end($name_ext);
-				$target_name = uniqid(rand()).".".$ext;
-				$target_file = "assets/upload/customer/".$target_name;
-				$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
-				$file_type = $_FILES['customer_photo']['type'];
 
-				if(in_array($ext, $allowed_types))
+
+
+
+		$this->load->view('vw_admin',$data);
+	}
+	private function customer_photo_update()
+	{
+		if($_FILES['customer_photo']['name']!='')
+		{
+			$name = $_FILES['customer_photo']['name'];
+			$name_ext = explode('.',$name );
+			$ext = end($name_ext);
+			$target_name = uniqid(rand()).".".$ext;
+			$target_file = "assets/upload/customer/".$target_name;
+			$allowed_types = array("jpeg","JPEG","jpg","JPG","gif","GIF","png","PNG");
+			$file_type = $_FILES['customer_photo']['type'];
+
+			if(in_array($ext, $allowed_types))
+			{
+				if(is_uploaded_file($_FILES['customer_photo']['tmp_name']))
+
 				{
-					if(is_uploaded_file($_FILES['customer_photo']['tmp_name']))
-						
-						{
-							if(move_uploaded_file($_FILES['customer_photo']['tmp_name'], $target_file))
-							{
-								
-								return $target_file;
-							}
-							
-								return false;					
-						}
-				}
-				else
-				{
+					if(move_uploaded_file($_FILES['customer_photo']['tmp_name'], $target_file))
+					{
+
+						return $target_file;
+					}
+
 					return false;
 				}
 			}
+			else
+			{
+				return false;
+			}
 		}
- 	
- 	public function customer_delete($id)
+	}
+
+	public function customer_delete($id)
 	{
 		$data['vw_customer'] = 'vw_customer';
-		$data['msg'] = '';		
+		$data['msg'] = '';
 		$num_rows = $this->db->count_all("inbox");
 		$data['inbox_total'] = $num_rows;
 		$data['inbox_count'] = $this->Mdl_admin->inbox_count();
 		$data['settings'] = $this->Mdl_admin->load_settings();
 		$data['profile'] = $this->Mdl_admin->load_profile();
 		$query = $this->Mdl_admin->delete_customer($id);
-	
+
 		$data['customer'] = $this->Mdl_admin->load_customer();
 		redirect('admin/customer/'.$query);
 	}

@@ -19,19 +19,19 @@
 				}
 				?>
 				<div class="cat">
-				<h3>Add a Customer</h3>
+				<h3>Add a supply and chain feature</h3>
 				<?php
-				 echo form_open_multipart('Admin/add_customer');
+				 echo form_open_multipart('Admin/add_supply');
 			?>
 			  <div class="row">
 			  <div class="col-sm-8" style="padding-right:25px;">
 			  <div class="row">
 				<div class="col-sm-3 form-group">
-				  <h4>Company Name</h4>
+				  <h4> Name</h4>
 				</div>
 			
 				<div class="col-sm-9 form-group">
-				  <input class="form-control" id="name" name="customer_name" placeholder="Name" type="text" required>
+				  <input class="form-control" id="name" name="supply_name" placeholder="Name" type="text" required>
 				</div>
 			  </div> 
 			    <div class="row">
@@ -40,7 +40,7 @@
 				</div>
 
 				<div class="col-sm-9 form-group">
-				  <textarea class="form-control" id="name" rows="10" name="customer_details" placeholder="Designation" type="text" required></textarea>
+				  <textarea class="form-control" id="name" rows="10" name="supply_details" placeholder="Details" type="text" required></textarea>
 				</div>
 			  </div>
 
@@ -51,7 +51,7 @@
 				  <h4>Add a photo</h4>
 				</div>
 				<div class="col-sm-9 form-group">
-					<input id="a" name="customer_photo" placeholder="Add a photo" type="file">
+					<input id="a" name="supply_photo" placeholder="Add a photo" type="file">
 			    </div>
 			  </div>
 			  
@@ -65,18 +65,18 @@
 			  
 			   <!-- Showing all news titles-->
 			  <div class="col-sm-4 form-group" style="padding-left:15px; border-left:1px dotted #ccc;">
-			  <h3 style="margin-top:-25px; margin-bottom:15px; margin-left:10px;"class="col-sm-11">Edit Customers</h3>
+			  <h3 style="margin-top:-25px; margin-bottom:15px; margin-left:10px;"class="col-sm-11">Edit Supply </h3>
 		<?php
-		foreach ($customer as $value1) {
+		foreach ($supply as $value1) {
 			
-			$id=$value1->customer_id;
+			$id=$value1->supply_id;
 				echo'<div class="row" style="padding:20px 0px 0px ">
 					<div class="col-xs-11">
-					<a href="#customer_'.$id.'" data-toggle="modal" data-target="#customer_'.$id.'"><h4 class="cont-head">'.$value1->customer_name.'</h4></a>
+					<a href="#supply_'.$id.'" data-toggle="modal" data-target="#supply_'.$id.'"><h4 class="cont-head">'.$value1->supply_name.'</h4></a>
 					</div>
 					<div class="col-xs-1">';
 					?>
-					 <a id="<?php echo $id;?>" style="color:red;"title="delete" onclick="return confirm('Are you sure want to delete this member?');" href="<?php echo base_url()?>Admin/customer_delete/<?php echo $id;?>">  x </a>
+					 <a id="<?php echo $id;?>" style="color:red;"title="delete" onclick="return confirm('Are you sure want to delete this member?');" href="<?php echo base_url()?>Admin/supply_delete/<?php echo $id;?>">  x </a>
 					
 					</div>
 					</div>
@@ -94,14 +94,14 @@
 			  
 			  <!--MODAL-->
 		<?php
-		foreach ($customer as $value2)
+		foreach ($supply as $value2)
 		 {
-		 	 $id = $value2->customer_id;
+		 	 $id = $value2->supply_id;
 		
-		 	echo form_open_multipart('Admin/update_customer');
+		 	echo form_open_multipart('Admin/update_supply');
 		 	echo'
-		 	<input type ="hidden" value = "'.$value2->customer_id.'" name="customer_id">
-			<div id="customer_'.$value2->customer_id.'" class="modal fade " role="dialog">
+		 	<input type ="hidden" value = "'.$value2->supply_id.'" name="supply_id">
+			<div id="supply_'.$value2->supply_id.'" class="modal fade " role="dialog">
 							  <div class="modal-dialog">
 
 								<!-- Modal content-->
@@ -109,7 +109,7 @@
 								  <div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									
-									<h4 class="modal-title black1">'.$value2->customer_name.'</h4>
+									<h4 class="modal-title black1">'.$value2->supply_name.'</h4>
 								  </div>
 								  <div class="modal-body">
 								    
@@ -121,7 +121,7 @@
 				 
 			
 				echo'<div class="col-sm-9 form-group">
-				  <input class="form-control" id="name" name="customer_name" placeholder="Name" type="text" required value="'.$value2->customer_name.'">
+				  <input class="form-control" id="name" name="supply_name" placeholder="Name" type="text" required value="'.$value2->supply_name.'">
 				</div>
 			  </div> 
 			  
@@ -130,7 +130,7 @@
 				  <h4>Details</h4>
 				</div>
 				<div class="col-sm-9 form-group">
-				  <textarea  class="form-control" id="name" name="customer_details" placeholder="Designation" type="text"  value="">'.$value2->customer_details.'</textarea>
+				  <textarea  class="form-control" id="name" name="supply_details" placeholder="Designation" type="text"  value="">'.$value2->supply_details.'</textarea>
 				</div>
 			  </div>
 			 ';
@@ -148,7 +148,7 @@
 			  <div class="row">
 				<div class="col-sm-5 form-group">';
 				?>
-			  <img src="<?php echo base_url()?><?php echo $value2->customer_photo?>" class="img-responsive">
+			  <img src="<?php echo base_url()?><?php echo $value2->supply_photo?>" class="img-responsive">
 				 
 				</div>
 			    </div>
@@ -158,7 +158,7 @@
 				  <h4>Change photo</h4>
 				</div>
 				<div class="col-sm-9 form-group">
-					<input id="a" name="customer_photo"  type="file">
+					<input id="a" name="supply_photo"  type="file">
 			    </div>
 			  </div>
 			  <button type="submit" class="btn btn-success category-h" title="add category">Update</button>

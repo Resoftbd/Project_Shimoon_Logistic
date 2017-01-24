@@ -29,21 +29,20 @@ foreach($pages as $value) {
 
     <!--Rest of the items-->
 
-    <div class="row rest_contents" style="padding-left:172px;">
-        <div class="col-xs-6">
-            <h2 style="color:#3071A9"><?php echo $value->pages_name?></h2>
+        <div class="row rest_content">
+	        <div class="page_details">
+	            <h2 style="color:#3071A9;" ><?php echo $value->pages_name?></h2>
+	
+	            <p><?php echo $value->pages_details?></p>
+	        </div>
+	
+	        <div class="image_details">
+	            <img src="<?php echo base_url()?><?php echo $value->pages_photo_2?>" class="img-responsive demo-image">
+	           
+	            <img src="<?php echo base_url()?><?php echo $value->pages_photo_3?>" class="img-responsive demo-image">
+	        </div>
 
-            <p><?php echo $value->pages_details?></p>
-        </div>
-
-        <div class="col-xs-6">
-            <br><br><br>
-            <img src="<?php echo base_url()?><?php echo $value->pages_photo_2?>" class="img-responsive demo-image">
-            <br><br><br>
-            <img src="<?php echo base_url()?><?php echo $value->pages_photo_3?>" class="img-responsive demo-image">
-        </div>
-
-    </div>
+    	</div>
     <?php
 }
     ?>

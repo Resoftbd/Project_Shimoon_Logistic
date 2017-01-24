@@ -282,24 +282,24 @@ class Mdl_admin extends CI_Model {
 			return $query->result();
 		}
 	}
-	# Customer
+	# services
 
-	public function customer_insert($target_file)
+	public function services_insert($target_file)
 	{
 		
-		$customer_name = $this->input->post('customer_name');
-		$customer_details= $this->input->post('customer_details');
+		$services_name = $this->input->post('services_name');
+		$services_details= $this->input->post('services_details');
 		$portfolio_link = $this->input->post('portfolio_link');
 
 		$attr = array(
-			'customer_name' => $customer_name,
-			'customer_details' => $customer_details,
-			'customer_photo' => $target_file,
+			'services_name' => $services_name,
+			'services_details' => $services_details,
+			'services_photo' => $target_file,
 			
 
 			);
 		
-		$query = $this->db->insert('customer',$attr);
+		$query = $this->db->insert('services',$attr);
 		if($query)
 		{
 			return 1;
@@ -311,33 +311,33 @@ class Mdl_admin extends CI_Model {
 
 	}
 
-	public function load_customer()
+	public function load_services()
 	{
-		$this->db->order_by('customer_id','DESC');
-		$query =$this->db->get('customer');
+		$this->db->order_by('services_id','ASC');
+		$query =$this->db->get('services');
 		if($query)
 		{
 			return $query->result();
 		}
 	}
-	public function delete_customer($id)
+	public function delete_services($id)
 	{
-		$query=$this->db->get_where('customer',array('customer_id' =>$id,));
+		$query=$this->db->get_where('services',array('services_id' =>$id,));
 		if($query)
 		{
 			$result=$query->result();
 			foreach ($result as $value) 
 			{
-				if(file_exists($value->customer_photo))
+				if(file_exists($value->services_photo))
 					{
-						unlink($value->customer_photo);
+						unlink($value->services_photo);
 
 					}
 			}
 			
 		}
-		$this->db->where('customer_id', $id);
-		$delete = $this->db->delete('customer');
+		$this->db->where('services_id', $id);
+		$delete = $this->db->delete('services');
 		if ($this->db->affected_rows() > 0)
 	   	{
 	   		 return 1;
@@ -347,6 +347,136 @@ class Mdl_admin extends CI_Model {
 			return 'x';
 		}
 	}
+    # supply
+
+    public function supply_insert($target_file)
+    {
+
+        $supply_name = $this->input->post('supply_name');
+        $supply_details= $this->input->post('supply_details');
+        $portfolio_link = $this->input->post('portfolio_link');
+
+        $attr = array(
+            'supply_name' => $supply_name,
+            'supply_details' => $supply_details,
+            'supply_photo' => $target_file,
+
+
+        );
+
+        $query = $this->db->insert('supply',$attr);
+        if($query)
+        {
+            return 1;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public function load_supply()
+    {
+        $this->db->order_by('supply_id','ASC');
+        $query =$this->db->get('supply');
+        if($query)
+        {
+            return $query->result();
+        }
+    }
+    public function delete_supply($id)
+    {
+        $query=$this->db->get_where('supply',array('supply_id' =>$id,));
+        if($query)
+        {
+            $result=$query->result();
+            foreach ($result as $value)
+            {
+                if(file_exists($value->supply_photo))
+                {
+                    unlink($value->supply_photo);
+
+                }
+            }
+
+        }
+        $this->db->where('supply_id', $id);
+        $delete = $this->db->delete('supply');
+        if ($this->db->affected_rows() > 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 'x';
+        }
+    }
+    # Customer
+
+    public function customer_insert($target_file)
+    {
+
+        $customer_name = $this->input->post('customer_name');
+        $customer_details= $this->input->post('customer_details');
+        $portfolio_link = $this->input->post('portfolio_link');
+
+        $attr = array(
+            'customer_name' => $customer_name,
+            'customer_details' => $customer_details,
+            'customer_photo' => $target_file,
+
+
+        );
+
+        $query = $this->db->insert('customer',$attr);
+        if($query)
+        {
+            return 1;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public function load_customer()
+    {
+        $this->db->order_by('customer_id','DESC');
+        $query =$this->db->get('customer');
+        if($query)
+        {
+            return $query->result();
+        }
+    }
+    public function delete_customer($id)
+    {
+        $query=$this->db->get_where('customer',array('customer_id' =>$id,));
+        if($query)
+        {
+            $result=$query->result();
+            foreach ($result as $value)
+            {
+                if(file_exists($value->customer_photo))
+                {
+                    unlink($value->customer_photo);
+
+                }
+            }
+
+        }
+        $this->db->where('customer_id', $id);
+        $delete = $this->db->delete('customer');
+        if ($this->db->affected_rows() > 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 'x';
+        }
+    }
 	#pages
 	public function load_pages($page_name)
 	{
@@ -494,101 +624,5 @@ class Mdl_admin extends CI_Model {
 			return 0;
 		}	
 	}
-	public function total_visit($days)
-	{
-		
-		$this->db->order_by('visitor_id DESC');
-		$this->db->limit($days);	
-		$this->db->from('visitor');
-		$query = $this->db->get();
-		
-		if($query)
-		{
-			$result = $query->result();
-		}
-		$total = 0;
-		foreach ($result as $key => $value) {
-			$total = $total + $value->visitor_total;
-		}
-		return $total;
-
-	}
-
-
-public function all_visit()
-	{
-		
-		$this->db->order_by('visitor_id DESC');
-			
-		$this->db->from('visitor');
-		$query = $this->db->get();
-		
-		if($query)
-		{
-			$result = $query->result();
-		}
-		$total = 0;
-		foreach ($result as $key => $value) {
-			$total = $total + $value->visitor_total;
-		}
-		return $total;
-
-	}
-
-
-	public function daily_visit()
-	{
-			
-		
-		
-		$this->db->limit(1);
-		$this->db->order_by('visitor_id','DESC');
-		
-		$query = $this->db->get('visitor');
-		if($query)
-		{
-			return $query->result();
-		}
-
-	}
-	public function monthly_visit()
-	{
-		$time = date("Y-m-d");
-		list($year, $m, $d) = explode('-', $time);
-		for ($month=1; $month <=12 ; $month++) { 
-			$this->db->select('SUM(visitor_total) as total');
-			$this->db->where('visitor_month',$month);
-			$this->db->where('visitor_year',$year);
-			$query=$this->db->get('visitor');
-		
-			$row=$query->row();
-			$total=$row->total;
-		
-		
-			$visitor_month = $month;
-			if ($total!=null) {
-				$visitor_month =  $month;
-				$visitor_total =  $total;
-			}
-			else
-			{	
-				$visitor_month =  $month;
-				$visitor_total = 0;
-			}
-			
-			 $result[] = array('visitor_month'=>$visitor_month ,  'visitor_total'=>$visitor_total );
-			 
-		if($month==$m){
-			break;
-		}
-		}
-		
-	return $result;
-	}
-	public function load_code()
-		{
-			$query = $this->db->get('adsense');
-			return $query->result();
-		}
-
+	
 }

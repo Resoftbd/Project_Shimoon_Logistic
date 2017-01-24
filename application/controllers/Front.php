@@ -16,36 +16,63 @@ class Front extends CI_Controller
         $data['settings'] = $this->Mdl_admin->load_settings();
         $data['slideshow'] = $this->Mdl_admin->load_slide();
         $data['home'] = $this->Mdl_admin->load_home();
+        $data['supply'] = $this->Mdl_admin->load_supply();
 
         $this->load->view('vw_front',$data);
     }
-    public function about_view()
+    public function story_view()
     {
         $this->load->model('Mdl_admin');
         $data['vw_pages_front'] = 'vw_pages_front';
         $data['msg'] = '';
         $data['settings'] = $this->Mdl_admin->load_settings();
-        $data['pages'] = $this->Mdl_admin->load_pages("About Us");
+        $data['pages'] = $this->Mdl_admin->load_pages("Our Story");
+        $data['supply'] = $this->Mdl_admin->load_supply();
+
+        $this->load->view('vw_front',$data);
+    }
+    public function team_view()
+    {
+        $this->load->model('Mdl_admin');
+        $data['vw_pages_front'] = 'vw_pages_front';
+        $data['msg'] = '';
+        $data['settings'] = $this->Mdl_admin->load_settings();
+        $data['pages'] = $this->Mdl_admin->load_pages("Our Team");
+        $data['supply'] = $this->Mdl_admin->load_supply();
+
+        $this->load->view('vw_front',$data);
+    }
+    public function technology_view()
+    {
+        $this->load->model('Mdl_admin');
+        $data['vw_pages_front'] = 'vw_pages_front';
+        $data['msg'] = '';
+        $data['settings'] = $this->Mdl_admin->load_settings();
+        $data['pages'] = $this->Mdl_admin->load_pages("Technology");
+        $data['supply'] = $this->Mdl_admin->load_supply();
 
         $this->load->view('vw_front',$data);
     }
     public function supply_view()
     {
         $this->load->model('Mdl_admin');
-        $data['vw_pages_front'] = 'vw_pages_front';
+        $data['vw_supply_front'] = 'vw_supply_front';
         $data['msg'] = '';
         $data['settings'] = $this->Mdl_admin->load_settings();
-        $data['pages'] = $this->Mdl_admin->load_pages("Supply Chain Solution");
+        $data['slideshow'] = $this->Mdl_admin->load_slide();
+        $data['supply'] = $this->Mdl_admin->load_supply();
 
         $this->load->view('vw_front',$data);
     }
-    public function freights_view()
+    public function services_view()
     {
         $this->load->model('Mdl_admin');
-        $data['vw_pages_front'] = 'vw_pages_front';
+        $data['vw_services_front'] = 'vw_services_front';
         $data['msg'] = '';
         $data['settings'] = $this->Mdl_admin->load_settings();
-        $data['pages'] = $this->Mdl_admin->load_pages("Freights");
+        $data['slideshow'] = $this->Mdl_admin->load_slide();
+        $data['services'] = $this->Mdl_admin->load_services();
+        $data['supply'] = $this->Mdl_admin->load_supply();
 
         $this->load->view('vw_front',$data);
     }
@@ -57,6 +84,7 @@ class Front extends CI_Controller
         $data['settings'] = $this->Mdl_admin->load_settings();
         $data['slideshow'] = $this->Mdl_admin->load_slide();
         $data['customer'] = $this->Mdl_admin->load_customer();
+        $data['supply'] = $this->Mdl_admin->load_supply();
 
         $this->load->view('vw_front',$data);
     }
@@ -68,6 +96,7 @@ class Front extends CI_Controller
         $data['settings'] = $this->Mdl_admin->load_settings();
         $data['slideshow'] = $this->Mdl_admin->load_slide();
         $data['customer'] = $this->Mdl_admin->load_customer();
+        $data['supply'] = $this->Mdl_admin->load_supply();
 
         $this->load->view('vw_front',$data);
     }
@@ -76,6 +105,7 @@ class Front extends CI_Controller
 
         $this->load->model('Mdl_admin');
         $data['vw_contact'] = 'vw_contact';
+        $data['supply'] = $this->Mdl_admin->load_supply();
         $data['settings'] = $this->Mdl_admin->load_settings();
 
         $result = $this->Mdl_admin->message();
